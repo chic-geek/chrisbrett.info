@@ -1,0 +1,245 @@
+/**
+ * S E T T I N G S
+ * 
+ * L I G H T
+ * Greys:
+ * #333333
+ * #4F4F4F
+ * #E0E0E0
+ * #B7BAC0 - dark theme copy
+ *
+ * Blues:
+ * #2196F3 - bright blue
+ * #0F1A2C - dark theme bg
+ *
+ * Fonts:
+ * Roboto Bold
+ * Lato Regular
+ *
+ * font-family: 'Lato', sans-serif;
+ * font-family: 'Roboto', sans-serif;
+ */
+
+/**
+ * SETUP
+ */
+@import "https://fonts.googleapis.com/css?family=Lato:400,900|Roboto:700&display=swap";
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding-top: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/**
+ * THEMING
+ */
+.dark-theme {
+  background-color: #0f1a2c;
+  color: #b7bac0;
+}
+
+/**
+ * BRAND
+ */
+.brand {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 1.75rem;
+  line-height: 2.5rem;
+}
+
+.brand-role {
+  color: #2196f3;
+  display: block;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+/**
+ * HERO
+ */
+.hero {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.hero-intro {
+  color: #ffffff;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 3rem;
+  width: 66.6666%;
+}
+
+.hero-intro span {
+  color: #2196f3;
+  font-weight: 900;
+}
+
+.hero-selfie {
+  padding-left: 5.5rem;
+}
+
+.hero-selfie img {
+  /* border-radius: 50%; */
+}
+
+/**
+ * HISTORY
+ */
+.history {
+  padding-bottom: 5rem;
+}
+
+.history-heading {
+  color: #6f7680;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.25rem;
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.history-heading::after {
+  content: "";
+  background-color: #3d4652;
+  display: block;
+  height: 0.0625rem;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.history-heading-text {
+  background-color: #0f1a2c;
+  margin-left: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.history-item {
+  display: flex;
+}
+
+.history-item:first-child {
+  padding-top: 5rem;
+}
+
+.history-item div:first-child {
+  padding-right: 2rem;
+  min-width: 16rem;
+}
+
+.history-item-meta {
+  font-family: "Roboto", sans-serif;
+}
+
+.history-item-meta-name {
+  color: #ffffff;
+  font-size: 1.55rem;
+}
+
+.history-item-meta-role {
+  color: #2196f3;
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.3rem;
+  text-transform: uppercase;
+}
+
+.history-item-meta-timeserved {
+  color: #6f7680;
+  font-size: 0.875rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+}
+
+.history-item-body {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+}
+/**
+ * FOOTER
+ */
+.footer {
+  border-top: 0.0625rem solid #3d4652;
+  color: #ffffff;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/**
+ * Lists
+ */
+.list-item {
+  padding-left: 0.5rem;
+}
+
+.list-item:first-child {
+  padding-left: 0;
+}
+
+/**
+ * UTILITIES
+ */
+.constrained {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+}
+
+.responsive {
+  height: auto;
+  max-width: 400px;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.justifyContents-spaceBetween {
+  justify-content: space-between;
+}
+
+.alignItems-center {
+  align-items: center;
+}
+
+.naked-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.width-100 {
+  width: 100%;
+}
