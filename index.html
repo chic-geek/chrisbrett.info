@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" href="normalize.css" /> -->
     <link rel="stylesheet" href="styles.css" />
     <title></title>
   </head>
 
   <body class="dark-theme">
-    <header class="constrained flex justifyContents-spaceBetween alignItems-center">
+    <header class="header constrained flex justifyContents-spaceBetween alignItems-center">
       <h1 class="brand">
         <span class="brand-name">Chris Brett</span>
         <span class="brand-role">Frontend Developer</span>
@@ -18,19 +19,19 @@
       <ul class="naked-list flex">
         <li class="list-item"><a href="https://github.com/chic-geek"><img src="icon-github.svg" alt="Check out my Github account"></a></li>
         <li class="list-item"><a href="https://www.linkedin.com/in/chris-brett-ba7a4149"><img src="icon-linkedin.svg" alt="Peruse my LinkedIn account"></a></li>
-        <li class="list-item"><a href="mailto:c.brett84@gmail.com"><img src="icon-contact.svg" alt="Contact me"></a></li>
       </ul>
     </header>
 
     <main>
       <section class="constrained">
-        <div class="hero flex alignItems-center">
-          <div class="hero-intro">
-            Currently working at <span>Citizens Advice</span> in London focussed on creating
-            user-centered experiences and solving problems with code.
-          </div>
+        <div class="hero">
           <div class="hero-selfie">
             <img class="responsive" src="cover-photo.svg" alt="Selfie of Chris Brett" />
+          </div>
+
+          <div class="hero-intro">
+            Currently working at <span>Citizens Advice</span> in London focused on creating
+            user-centered experiences and solving problems with code.
           </div>
         </div>
       </section>
@@ -43,10 +44,6 @@
             </span>
           </div>
         </h3>
-        
-        <!-- <h3 class="history-heading">
-          <div class="constrained">Recent history</div>
-        </h3> -->
 
         <div class="constrained">
           <section class="history-item">
@@ -85,16 +82,12 @@
 
             <div>
               <p class="history-item-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed pharetra nisi. Nam
-                pharetra euismod dolor, sit amet commodo lorem efficitur id. Aenean dictum nibh eu
-                elementum efficitur. Integer rhoncus vulputate nisi, id porttitor lorem ornare vitae.
-                Vestibulum porttitor diam ac ligula interdum faucibus. Proin varius dignissim arcu,
-                quis sollicitudin nisi blandit ut. Vivamus leo tellus, vulputate et luctus eu,
-                consectetur vitae nibh. Pellentesque habitant morbi tristique senectus et netus et
-                malesuada fames ac turpis egestas. Mauris eu augue justo. Nunc dolor justo, venenatis
-                blandit vulputate et, efficitur id nisi. Morbi vulputate, sem et vulputate posuere,
-                nunc orci sagittis urna, nec condimentum erat justo non arcu. Nam dignissim vestibulum
-                massa. Vestibulum at augue ac nunc tempus rhoncus quis nec purus.
+                NewsNow is a news aggregator service linking to thousands of news providers and publications. 
+                A lot of my responsibility was centered around a users experience. 
+                From small tasks such as the revealing navigation to a much larger undertaking, 
+                a brand refresh. This doesn't mean I haven't had my fair share of perl puzzles to solve, such as understanding why the form system
+                was duplicating users' email addresses in the feedback form templates and introducing a BEM architechture for maintaining
+                large scale CSS.
               </p>
             </div>
           </section>
@@ -153,13 +146,12 @@
     </main>
 
     <footer class="footer">
-      <div class="constrained flex justifyContents-spaceBetween">
+      <div class="constrained flex justifyContents-spaceBetween alignItems-center">
         <p>&copy; chrisbrett.info 2019</p>
 
         <ul class="naked-list flex">
           <li class="list-item"><a href="https://github.com/chic-geek"><img src="icon-github.svg" alt="Check out my Github account"></a></li>
           <li class="list-item"><a href="https://www.linkedin.com/in/chris-brett-ba7a4149"><img src="icon-linkedin.svg" alt="Peruse my LinkedIn account"></a></li>
-          <li class="list-item"><a href="mailto:c.brett84@gmail.com"><img src="icon-contact.svg" alt="Contact me"></a></li>
         </ul>
       </div>
     </footer>

@@ -1,0 +1,24 @@
+{
+  "name": "chrisbrett.info",
+  "homepage": "https://github.com/chic-geek/chrisbrett.info#readme",
+  "version": "0.1.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "predeploy": "",
+    "deploy": "gh-pages -d ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chic-geek/chrisbrett.info.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chic-geek/chrisbrett.info/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
