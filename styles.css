@@ -305,6 +305,16 @@ a {
   max-width: 64rem;
 }
 
+.hidden {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .visible-on-m {
+    display: flex;
+  }
+}
+
 .responsive {
   height: auto;
   width: 100%;
