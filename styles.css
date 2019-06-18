@@ -180,10 +180,6 @@ a {
 /**
  * HISTORY
  */
-.history {
-  /* padding-bottom: 5rem; */
-}
-
 .history-heading {
   color: #6f7680;
   font-family: "Roboto", sans-serif;
@@ -258,6 +254,21 @@ a {
 .history-item-body {
   font-size: 1.25rem;
   line-height: 1.875rem;
+}
+
+.history-item-body ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.history-item-body ul li {
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .history-item-body ul {
+    max-width: 75%;
+  }
 }
 
 @media (min-width: 64rem) {
