@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="resources/styles/styles.css" />
   <title></title>
 </head>
 
@@ -18,33 +18,29 @@
 
     <ul class="naked-list hidden visible-on-m">
       <li class="list-item">
-        <a href="https://github.com/chic-geek"><img src="icon-github.svg" alt="Check out my Github account"></a>
+        <a href="https://github.com/chic-geek">
+          <img src="resources/images/icon-github.svg" alt="Check out my Github account">
+        </a>
       </li>
       <li class="list-item">
-        <a href="https://www.linkedin.com/in/chris-brett-ba7a4149"><img src="icon-linkedin.svg"
-            alt="Peruse my LinkedIn account"></a>
-      </li>
-      <li class="list-item">
-        <a href="https://drive.google.com/open?id=1Eiv3Bpk1gTr_sD6Q6mQ_uEoO43mXasQpRbEheiHHQOs"><img
-            src="icon-document.svg" alt="Read through my resumé"></a>
+        <a href="https://www.linkedin.com/in/chris-brett-ba7a4149">
+          <img src="resources/images/icon-linkedin.svg" alt="Peruse my LinkedIn account">
+        </a>
       </li>
     </ul>
   </header>
-
   <main>
     <section class="constrained">
       <div class="hero">
         <div class="hero-selfie">
-          <img class="responsive" src="cover-photo.svg" alt="Selfie of Chris Brett" />
+          <img class="responsive" src="resources/images/cover-photo.svg" alt="Selfie of Chris Brett" />
         </div>
-
         <div class="hero-intro">
           Currently working at <span>Citizens Advice</span> in London focused on creating user-centered experiences and
           solving problems with code.
         </div>
       </div>
     </section>
-
     <section class="history">
       <h3 class="history-heading">
         <div class="constrained">
@@ -53,7 +49,6 @@
           </span>
         </div>
       </h3>
-
       <div class="constrained">
         <section class="history-item">
           <div>
@@ -63,42 +58,34 @@
               <span class="history-item-meta-timeserved">Apr 17 - Current role</span>
             </h4>
           </div>
-
           <div>
             <div class="history-item-body">
-              <p>
-                Hopefully the Citizens Advice doesn’t need to much of an introduction as working there enables us to
-                reach millions of people a year. Over 26 million visitors seek out advice using the our public facing
-                website, so it’s an important product for us to maintain and improve.
+              <p class="history-item-body-intro">
+                Citizens Advice is a network of independent charities throughout
+                the UK offering free, confidential information and advice.
               </p>
 
-              <p>A few things I've done at Citizens Advice:</p>
+              <p>This role covered a few key areas:</p>
 
               <ul>
-                <li>A suite of interactive advice tools built using ReactJS. An example can be seen <a
-                    href="https://www.citizensadvice.org.uk/consumer/post/claim-compensation-for-lost-damaged-or-delayed-post/">here</a>
+                <li>A suite of interactive <a
+                    href="https://www.citizensadvice.org.uk/consumer/post/claim-compensation-for-lost-damaged-or-delayed-post/">advice
+                    tools</a> built using ReactJS.</li>
+                <li>Maintaining and adding new features to bespoke case management system using Ruby, Rails and React.
                 </li>
-                <li>Maintenance and creating new features of a bespoke case management system built in house using Ruby,
-                  the Rails framework and ReactJS.</li>
-                <li>The Citizens Advice <a href="https://citizensadvice.github.io/cads/">Design system</a> is a
-                  collection of functional CSS classes and components that enforce large scale code reuse and standards
-                  and design consistency across services and products.</li>
-                <li>The New platform is a project in discovery about how we can better manage content on a larger more
-                  reusable scale by having microservices handle how content could be distributed.</li>
-                <li>The maintenance of the existing <a href="https://www.citizensadvice.org.uk/">public facing</a> and
-                  adviser only websites.</li>
-                <li>Mentoring a junior member of the frontend development team and often acting as a bridge between the
-                  Ruby developers in our Technology team and the product owners in our Customer Journey team.</li>
-                <li>
-                  Taking a personal <a href="https://github.com/chic-geek/react-component-library">React Component
-                    library</a> project and turning it into a reusable library for other members of the team.
-                </li>
+                <li>Design and development of the Citizens Advice design system. Creating a collection of functional CSS
+                  classes and components for large scale code reuse and consistency across digital products.</li>
+                <li>Discovery and development for a new CMS to scale content and it's distribution.</li>
+                <li>The maintenance of <a href="https://www.citizensadvice.org.uk/">public facing</a> and adviser only
+                  websites.</li>
+                <li>Mentoring a junior Frontend Developer and managing relationships between technology and design
+                  teams.</li>
+                <li>Taking a personal <a href="https://github.com/chic-geek/react-component-library">React Component
+                    library</a> project and turning it into a reusable library for other members of the team.</li>
               </ul>
-
             </div>
           </div>
         </section>
-
         <section class="history-item">
           <div>
             <h4 class="history-item-meta">
@@ -107,50 +94,54 @@
               <span class="history-item-meta-timeserved">Mar 16 - Apr 17</span>
             </h4>
           </div>
-
           <div>
             <div class="history-item-body">
-              <p>
-                NewsNow is the UK's first and leading home-grown and independent news aggregation service.
-                Fully-automated, and on a continuous basis, NewsNow displays breaking headlines linking to news websites
-                all around the world.
+              <p class="history-item-body-intro">
+                NewsNow is the UK's first and leading home-grown and independent fully-automated news aggregation
+                service, delivering content on a continuous basis.
               </p>
 
               <p>A few things I contributed to at NewsNow:</p>
 
               <ul>
-                <li>Systems administration on custom Debian servers and on site server maintenance in Canary Wharf for
-                  any repairs or component replacements.</li>
+                <li>Systems administration on custom Debian servers and on site server maintenance for repairs or
+                  component replacements.</li>
                 <li>Building new features using their custom Perl templating language, CL and bug fixes within the
                   legacy code.</li>
                 <li>Building out UI features like a revealing navigation, new cookie control features and the headline
-                  alert system, all of which can be seen on the <a href="https://www.newsnow.co.uk/h/">homepage</a>.
-                </li>
+                  alert system, all of which can be seen on the homepage.</li>
                 <li>Maintain the legacy CSS codebase. No pre / post processing. I adopted a BEM style to try to stop the
                   leaking of styling across unintended parts of the UI / CSS codebase.</li>
-                <li>Design and prototype mobile first templates for future overview pages.</li>
-                <li>A <a href="https://www.newsnow.co.uk/branding/nn__brand-guidelines.pdf">brand refresh /
-                    evolution</a> for the logo, colours and usage.</li>
+                <li>Designing and prototyping mobile first templates for future overview pages.</li>
+                <li>A brand refresh including logo, colours and usage guidelines.</li>
               </ul>
+
+              <p>
+                For further employment history, refer to my <a
+                  href="https://docs.google.com/document/d/1mP94I_n8p40_cF9feKHA8ljsJ338-sCSoRDOQK_J3t8/edit?usp=sharing">resumé</a>.
+              </p>
             </div>
           </div>
         </section>
       </div>
     </section>
-    </div>
   </main>
 
   <footer class="footer">
     <div class="constrained flex justifyContents-spaceBetween alignItems-center">
       <p>chrisbrett.info 2019</p>
-      <ul class="naked-list flex">
-        <li class="list-item"><a href="https://github.com/chic-geek"><img src="icon-github.svg"
-              alt="Check out my Github account"></a></li>
-        <li class="list-item"><a href="https://www.linkedin.com/in/chris-brett-ba7a4149"><img src="icon-linkedin.svg"
-              alt="Peruse my LinkedIn account"></a></li>
-        <li class="list-item"><a
-            href="https://drive.google.com/open?id=1Eiv3Bpk1gTr_sD6Q6mQ_uEoO43mXasQpRbEheiHHQOs"><img
-              src="icon-document.svg" alt="Read through my resumé"></a></li>
+
+      <ul class="naked-list hidden visible-on-m">
+        <li class="list-item">
+          <a href="https://github.com/chic-geek">
+            <img src="resources/images/icon-github.svg" alt="Check out my Github account">
+          </a>
+        </li>
+        <li class="list-item">
+          <a href="https://www.linkedin.com/in/chris-brett-ba7a4149">
+            <img src="resources/images/icon-linkedin.svg" alt="Peruse my LinkedIn account">
+          </a>
+        </li>
       </ul>
     </div>
   </footer>
