@@ -1,3 +1,15 @@
-# chrisbrett.info
+[![Netlify Status](https://api.netlify.com/api/v1/badges/be74a538-12ab-4c16-a9bf-0a60ae37989e/deploy-status)](https://app.netlify.com/sites/hardcore-newton-661e6f/deploys)
 
-Personal website introducing myself and some of my skills
+# README
+
+## Description
+
+The personal site of Chris Brett. Essentially my Resumé and a few extra lines / useful links. More will come with time and thought.
+
+## Technology
+
+There are no Node packages, no build processes etc. Everything is currently done by hand. Purposely kept this simple.
+
+## Deployment
+
+Is completed through Netlify with the status of that deploy shown above.
