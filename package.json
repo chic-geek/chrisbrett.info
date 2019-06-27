@@ -1,0 +1,23 @@
+{
+  "name": "chrisbrett.info",
+  "version": "1.0.0",
+  "description": "Personal site of Frontend Developer Chris Brett.",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "node-sass resources/styles/styles.css resources/styles/styles.min.css --output-style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chic-geek/chrisbrett.info.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chic-geek/chrisbrett.info/issues"
+  },
+  "homepage": "https://github.com/chic-geek/chrisbrett.info#readme",
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}

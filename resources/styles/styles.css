@@ -266,14 +266,14 @@ a {
 }
 
 .history-item-body li {
-  text-indent: -1.65rem;
+  text-indent: -1.9rem;
   padding-bottom: 1rem;
 }
 
 .history-item-body li::before {
-  content: "\2013";
+  content: "\29BF";
   padding-right: 1rem;
-  opacity: 0.3;
+  color: #2196f3;
 }
 
 @media (min-width: 64rem) {

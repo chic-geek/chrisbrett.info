@@ -8,7 +8,7 @@ The personal site of Chris Brett. Essentially my Resumé and a few extra lines /
 
 ## Technology
 
-There are no Node packages, no build processes etc. Everything is currently done by hand. Purposely kept this simple.
+Purposely kept this simple, but am using `node-sass` to minify my css.
 
 ## Deployment
 
