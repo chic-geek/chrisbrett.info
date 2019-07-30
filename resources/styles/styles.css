@@ -292,6 +292,12 @@ a {
   padding-bottom: 1rem;
 }
 
+.footer-copyright {
+  color: #6f7680;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
 @media (min-width: 890px) {
   .footer {
     border-top: 0.0625rem solid #3d4652;
