@@ -4,6 +4,7 @@
   "description": "Personal site of Frontend Developer Chris Brett.",
   "main": "index.js",
   "scripts": {
+    "start": "python -m SimpleHTTPServer 8001",
     "build-css": "node-sass resources/styles/styles.css resources/styles/styles.min.css --output-style compressed"
   },
   "repository": {
