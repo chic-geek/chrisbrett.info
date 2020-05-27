@@ -10,7 +10,7 @@
  *
  * Blues:
  * #2196F3 - bright blue
- * #0F1A2C - dark theme bg
+ * #161e2e - dark theme bg
  *
  * Fonts:
  * Roboto Bold
@@ -70,7 +70,7 @@ a {
  * THEMING
  */
 .dark-theme {
-  background-color: #0f1a2c;
+  background-color: #161e2e;
   color: #b7bac0;
 }
 
@@ -179,7 +179,7 @@ a {
  * HISTORY
  */
 .history-heading {
-  color: #6f7680;
+  color: #4b5563;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   margin: 0;
@@ -198,7 +198,7 @@ a {
 
 .history-heading::after {
   content: "";
-  background-color: #3d4652;
+  background-color: #252f3f;
   display: block;
   height: 0.0625rem;
   left: 0;
@@ -208,7 +208,7 @@ a {
 }
 
 .history-heading-text {
-  background-color: #0f1a2c;
+  background-color: #161e2e;
   margin-left: -1rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -273,7 +273,7 @@ a {
 .history-item-body li::before {
   content: "\29BF";
   padding-right: 1rem;
-  color: #2196f3;
+  color: #4b5563;
 }
 
 @media (min-width: 64rem) {
@@ -286,7 +286,7 @@ a {
  * FOOTER
  */
 .footer {
-  border-top: 0.0625rem solid #3d4652;
+  border-top: 0.0625rem solid #252f3f;
   color: #ffffff;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -300,8 +300,6 @@ a {
 
 @media (min-width: 890px) {
   .footer {
-    border-top: 0.0625rem solid #3d4652;
-    color: #ffffff;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
