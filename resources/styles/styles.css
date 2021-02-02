@@ -292,10 +292,18 @@ a {
   padding-bottom: 1rem;
 }
 
-.footer-copyright {
+.footer-meta {
   color: #b7bac0;
   margin-right: 0.25rem;
+}
+
+.footer-copyright {
   vertical-align: middle;
+}
+
+.footer-version {
+  color: #161e2e;
+  font-size: 0.875rem;
 }
 
 @media (min-width: 890px) {
