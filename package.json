@@ -2,10 +2,9 @@
   "name": "chrisbrett.info",
   "version": "1.0.0",
   "description": "Personal site of Frontend Developer Chris Brett.",
-  "main": "index.js",
   "scripts": {
-    "start": "python -m SimpleHTTPServer 8001",
-    "build-css": "node-sass resources/styles/styles.css resources/styles/styles.min.css --output-style compressed"
+    "dev": "npx parcel src/index.html",
+    "build": "npx parcel build src/index.html --public-url ./"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,6 @@
   },
   "homepage": "https://github.com/chic-geek/chrisbrett.info#readme",
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "parcel": "^2.9.3"
   }
 }

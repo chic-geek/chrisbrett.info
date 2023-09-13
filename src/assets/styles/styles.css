@@ -1,25 +1,15 @@
 /**
  * S E T T I N G S
- * 
- * L I G H T
- * Greys:
- * #333333
- * #4F4F4F
- * #E0E0E0
- * #B7BAC0 - dark theme copy
- *
- * Blues:
- * #2196F3 - bright blue
- * #161e2e - dark theme bg
- *
- * Fonts:
- * Roboto Bold
- * Lato Regular
- *
- * font-family: 'Lato', sans-serif;
- * font-family: 'Roboto', sans-serif;
  */
-
+ :root {
+   --primary-font: 'Roboto', sans-serif;
+   --secondary-font: 'Lato', sans-serif;
+   --dark-hightlight-color: 33, 150, 243;
+   --dark-section-color: 75, 85, 99;
+   --dark-copy-color: 183, 186, 192;
+   --dark-bg-color: 22, 30, 46;
+  }
+  
 /**
  * SETUP
  */
@@ -35,10 +25,9 @@ html {
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: var(--secondary-font);
   font-size: 1rem;
   line-height: 1.5;
-  font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -58,20 +47,20 @@ img {
 }
 
 a {
-  color: #2196f3;
+  color: rgb(var(--dark-hightlight-color));
 }
 
 ::selection {
   color: #ffffff;
-  background: #2196f3;
+  background: rgb(var(--dark-hightlight-color));
 }
 
 /**
  * THEMING
  */
 .dark-theme {
-  background-color: #161e2e;
-  color: #b7bac0;
+  background-color: rgb(var(--dark-bg-color));
+  color: rgb(var(--dark-copy-color));
 }
 
 /**
@@ -97,7 +86,7 @@ a {
  * BRAND
  */
 .brand {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--primary-font);
   font-weight: 700;
   line-height: 1;
   margin: 0;
@@ -110,7 +99,7 @@ a {
 }
 
 .brand-role {
-  color: #2196f3;
+  color: rgb(var(--dark-hightlight-color));
   display: block;
   font-size: 1.25rem;
   text-transform: uppercase;
@@ -132,7 +121,7 @@ a {
 }
 
 .hero-intro span {
-  color: #2196f3;
+  color: rgb(var(--dark-hightlight-color));
   font-weight: 900;
 }
 
@@ -179,8 +168,8 @@ a {
  * HISTORY
  */
 .history-heading {
-  color: #4b5563;
-  font-family: "Roboto", sans-serif;
+  color: rgb(var(--dark-section-color));
+  font-family: var(--primary-font);
   font-size: 1rem;
   margin: 0;
   margin-bottom: 3rem;
@@ -198,17 +187,18 @@ a {
 
 .history-heading::after {
   content: "";
-  background-color: #252f3f;
+  background-color: rgba(var(--dark-section-color), 0.5);
   display: block;
   height: 0.0625rem;
   left: 0;
   position: absolute;
   top: 50%;
   width: 100%;
+  /* opacity: 0.5; */
 }
 
 .history-heading-text {
-  background-color: #161e2e;
+  background-color: rgb(var(--dark-bg-color));
   margin-left: -1rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -226,7 +216,7 @@ a {
 }
 
 .history-item-meta {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--primary-font);
 }
 
 .history-item-meta-name {
@@ -235,7 +225,7 @@ a {
 }
 
 .history-item-meta-role {
-  color: #2196f3;
+  color: rgb(var(--dark-hightlight-color));
   display: block;
   font-size: 1.25rem;
   line-height: 1.3rem;
@@ -243,7 +233,7 @@ a {
 }
 
 .history-item-meta-timeserved {
-  color: #b7bac0;
+  color: rgb(var(--dark-copy-color));
   font-size: 0.875rem;
   line-height: 1.8rem;
   text-transform: uppercase;
@@ -273,7 +263,7 @@ a {
 .history-item-body li::before {
   content: "\29BF";
   padding-right: 1rem;
-  color: #4b5563;
+  color: rgb(var(--dark-section-color));
 }
 
 @media (min-width: 64rem) {
@@ -286,14 +276,14 @@ a {
  * FOOTER
  */
 .footer {
-  border-top: 0.0625rem solid #252f3f;
+  border-top: 0.0625rem solid rgba(var(--dark-section-color), 0.5);
   color: #ffffff;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
 .footer-meta {
-  color: #b7bac0;
+  color: rgb(var(--dark-copy-color));
   margin-right: 0.25rem;
 }
 
@@ -302,7 +292,7 @@ a {
 }
 
 .footer-version {
-  color: #161e2e;
+  color: rgb(var(--dark-bg-color));
   font-size: 0.875rem;
 }
 
