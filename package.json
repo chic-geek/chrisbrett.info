@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/chic-geek/chrisbrett.info#readme",
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.9.3",
+    "@parcel/transformer-webmanifest": "^2.9.3",
     "parcel": "^2.9.3"
   }
 }
