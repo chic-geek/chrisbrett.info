@@ -55,6 +55,26 @@ a {
   background: rgb(var(--dark-hightlight-color));
 }
 
+main {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+main.animate {
+  animation: fadeAndDrop 1s ease forwards;
+}
+
+@keyframes fadeAndDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /**
  * THEMING
  */
@@ -304,7 +324,14 @@ a {
 }
 
 /**
- * Lists
+ * ICONS
+ */
+.icon .icon-squircle {
+  fill: rgb(var(--dark-hightlight-color));
+}
+
+/**
+ * LISTS
  */
 .list-item {
   padding-left: 0.5rem;

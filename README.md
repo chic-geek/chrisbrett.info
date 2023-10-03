@@ -8,7 +8,7 @@ The personal site of Chris Brett. Essentially my Resumé and a few extra lines /
 
 ## Technology
 
-Purposely kept this simple, but am using `node-sass` to minify my css.
+Purposely kept this simple, making use of ParcelJS to minify files.
 
 ## Deployment
 
