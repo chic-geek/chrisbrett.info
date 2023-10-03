@@ -13,3 +13,4 @@ Purposely kept this simple, making use of ParcelJS to minify files.
 ## Deployment
 
 Is completed through Netlify with the status of that deploy shown above.
+Simply merge to `main` and let Netlify handle to deployment.
