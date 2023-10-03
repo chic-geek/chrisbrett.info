@@ -214,7 +214,6 @@ main.animate {
   position: absolute;
   top: 50%;
   width: 100%;
-  /* opacity: 0.5; */
 }
 
 .history-heading-text {
@@ -326,6 +325,16 @@ main.animate {
 /**
  * ICONS
  */
+.icon {
+  transform: scale(0.82);
+}
+
+@media (min-width: 30rem) {
+  .icon {
+    transform: unset;
+  }
+}
+
 .icon .icon-squircle {
   fill: rgb(var(--dark-hightlight-color));
 }
@@ -333,12 +342,14 @@ main.animate {
 /**
  * LISTS
  */
-.list-item {
-  padding-left: 0.5rem;
-}
+@media (min-width: 30rem) {
+  .list-item {
+    padding-left: 0.5rem;
+  }
 
-.list-item:first-child {
-  padding-left: 0;
+  .list-item:first-child {
+    padding-left: 0;
+  }
 }
 
 /**
