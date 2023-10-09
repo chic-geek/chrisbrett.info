@@ -241,6 +241,11 @@ main.animate {
 .history-item-meta-name {
   color: #ffffff;
   font-size: 1.55rem;
+  line-height: 2.75rem;
+}
+
+.history-item-meta-name:hover {
+  color: rgba(255, 255, 255, .85);
 }
 
 .history-item-meta-role {
