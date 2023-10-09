@@ -27,12 +27,12 @@ html {
 body {
   font-family: var(--secondary-font);
   font-size: 1rem;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: calc(1ex / 0.32);
   margin: 0;
   padding-left: 2rem;
   padding-right: 2rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 48rem) {
@@ -115,7 +115,7 @@ main.animate {
 .brand-name {
   color: #ffffff;
   font-size: 1.75rem;
-  line-height: 2.5rem;
+  line-height: calc(1ex / 0.32);
 }
 
 .brand-role {
@@ -137,7 +137,7 @@ main.animate {
   color: #ffffff;
   font-size: 1.75rem;
   font-weight: 400;
-  line-height: 2.35rem;
+  line-height: calc(1ex / 0.32);
 }
 
 .hero-intro span {
@@ -156,7 +156,8 @@ main.animate {
 @media (min-width: 48rem) {
   .hero-intro {
     font-size: 2.25rem;
-    line-height: 3rem;
+    /* line-height: 3rem; */
+    line-height: calc(1ex / 0.32);
   }
 
   .hero-selfie {
@@ -230,18 +231,22 @@ main.animate {
 }
 
 .history-item div:first-child {
-  padding-right: 2rem;
   min-width: 16rem;
+}
+
+@media screen and (min-width: 48rem) {
+  .history-item div:first-child {
+    padding-right: 3rem;
+  }
 }
 
 .history-item-meta {
   font-family: var(--primary-font);
+  line-height: calc(1ex / 0.32);
 }
-
 .history-item-meta-name {
   color: #ffffff;
   font-size: 1.55rem;
-  line-height: 2.75rem;
 }
 
 .history-item-meta-name:hover {
@@ -252,20 +257,24 @@ main.animate {
   color: rgb(var(--dark-hightlight-color));
   display: block;
   font-size: 1.25rem;
-  line-height: 1.3rem;
   text-transform: uppercase;
 }
 
 .history-item-meta-timeserved {
   color: rgb(var(--dark-copy-color));
   font-size: 0.875rem;
-  line-height: 1.8rem;
   text-transform: uppercase;
 }
 
 .history-item-body {
   font-size: 1.25rem;
-  line-height: 1.875rem;
+  line-height: calc(1ex / 0.32);
+}
+
+@media screen and (min-width: 48rem) {
+  .history-item-body {
+    max-width: 65ch;
+  }
 }
 
 .history-item-body-intro {
