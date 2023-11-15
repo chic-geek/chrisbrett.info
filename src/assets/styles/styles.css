@@ -2,8 +2,8 @@
  * S E T T I N G S
  */
  :root {
-   --primary-font: 'Roboto', sans-serif;
-   --secondary-font: 'Lato', sans-serif;
+   --primary-font: 'Inter', sans-serif;
+   --secondary-font: 'Inter', sans-serif;
    --dark-hightlight-color: 16, 185, 129;
    --dark-section-color: 75, 85, 99;
    --dark-copy-color: 183, 186, 192;
@@ -136,13 +136,8 @@ main.animate {
 .hero-intro {
   color: #ffffff;
   font-size: 1.75rem;
-  font-weight: 400;
-  line-height: calc(1ex / 0.32);
-}
-
-.hero-intro span {
-  color: rgb(var(--dark-hightlight-color));
-  font-weight: 900;
+  font-weight: 700;
+  line-height: 1.4 !important;
 }
 
 .hero-selfie {
@@ -156,7 +151,6 @@ main.animate {
 @media (min-width: 48rem) {
   .hero-intro {
     font-size: 2.25rem;
-    /* line-height: 3rem; */
     line-height: calc(1ex / 0.32);
   }
 
@@ -242,11 +236,11 @@ main.animate {
 
 .history-item-meta {
   font-family: var(--primary-font);
-  line-height: calc(1ex / 0.32);
+  margin-top: 24px;
 }
 .history-item-meta-name {
   color: #ffffff;
-  font-size: 1.55rem;
+  font-size: 1.5rem;
 }
 
 .history-item-meta-name:hover {
@@ -256,7 +250,7 @@ main.animate {
 .history-item-meta-role {
   color: rgb(var(--dark-hightlight-color));
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
@@ -267,8 +261,11 @@ main.animate {
 }
 
 .history-item-body {
-  font-size: 1.25rem;
-  line-height: calc(1ex / 0.32);
+  font-size: 1.125rem;
+}
+
+.history-item-body a {
+  font-weight: 600;
 }
 
 @media screen and (min-width: 48rem) {
@@ -280,23 +277,26 @@ main.animate {
 .history-item-body-intro {
   color: #ffffff;
   font-size: 1.5rem;
-  line-height: 1.5;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .history-item-body ul {
   list-style: none;
-  padding-left: 1.6rem;
+  padding-left: 0;
 }
 
 .history-item-body li {
-  text-indent: -1.9rem;
   padding-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
 }
 
-.history-item-body li::before {
-  content: "\29BF";
-  padding-right: 1rem;
-  color: rgb(var(--dark-section-color));
+.history-item-body li span {
+  color: rgb(var(--dark-hightlight-color));
+  display: flex;
+  padding-right: 0.5rem;
+  transform: translateY(0.25rem);
 }
 
 @media (min-width: 64rem) {
