@@ -6,7 +6,7 @@
    --secondary-font: 'Inter', sans-serif;
    --dark-hightlight-color: 16, 185, 129;
    --dark-section-color: 75, 85, 99;
-   --dark-copy-color: 183, 186, 192;
+   --dark-copy-color: 230, 230, 230;
    --dark-bg-color: 22, 30, 46;
   }
   
@@ -35,7 +35,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
   body {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -90,13 +90,13 @@ main.animate {
   padding-top: 2rem;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
   .header {
     padding-top: 4rem;
   }
 }
 
-@media (min-width: 64rem) {
+@media screen and (min-width: 64rem) {
   .header {
     padding-top: 6rem;
   }
@@ -108,20 +108,19 @@ main.animate {
 .brand {
   font-family: var(--primary-font);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.25;
   margin: 0;
 }
 
 .brand-name {
   color: #ffffff;
   font-size: 1.75rem;
-  line-height: calc(1ex / 0.32);
 }
 
 .brand-role {
   color: rgb(var(--dark-hightlight-color));
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   text-transform: uppercase;
 }
 
@@ -135,9 +134,16 @@ main.animate {
 
 .hero-intro {
   color: #ffffff;
-  font-size: 1.75rem;
+  font-size: 1.75rem !important;
   font-weight: 700;
-  line-height: 1.4 !important;
+  letter-spacing: -.05rem;
+  line-height: 1.25 !important;
+}
+
+@media screen and (min-width: 48rem) {
+  .hero-intro {
+    font-size: 2.5rem !important;
+  }
 }
 
 .hero-selfie {
@@ -148,7 +154,7 @@ main.animate {
   margin-right: auto;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
   .hero-intro {
     font-size: 2.25rem;
     line-height: calc(1ex / 0.32);
@@ -159,7 +165,7 @@ main.animate {
   }
 }
 
-@media (min-width: 890px) {
+@media screen and (min-width: 890px) {
   .hero {
     display: flex;
     align-items: center;
@@ -194,7 +200,7 @@ main.animate {
   z-index: 1;
 }
 
-@media (min-width: 48rem) {
+@media screen and (min-width: 48rem) {
   .history-heading {
     font-size: 1.25rem;
   }
@@ -276,9 +282,18 @@ main.animate {
 
 .history-item-body-intro {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  line-height: 1.35;
+  letter-spacing: -.05rem;
+  line-height: 1.25 !important;
+  max-width: 38ch;
+}
+
+@media screen and (min-width: 48rem) {
+  .history-item-body-intro {
+    font-size: 1.5rem;
+  }
+  
 }
 
 .history-item-body ul {
@@ -299,7 +314,7 @@ main.animate {
   transform: translateY(0.25rem);
 }
 
-@media (min-width: 64rem) {
+@media screen and (min-width: 64rem) {
   .history-item {
     display: flex;
   }
@@ -329,7 +344,7 @@ main.animate {
   font-size: 0.875rem;
 }
 
-@media (min-width: 890px) {
+@media screen and (min-width: 890px) {
   .footer {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
@@ -343,7 +358,7 @@ main.animate {
   transform: scale(0.82);
 }
 
-@media (min-width: 30rem) {
+@media screen and (min-width: 30rem) {
   .icon {
     transform: unset;
   }
@@ -356,7 +371,7 @@ main.animate {
 /**
  * LISTS
  */
-@media (min-width: 30rem) {
+@media screen and (min-width: 30rem) {
   .list-item {
     padding-left: 0.5rem;
   }
