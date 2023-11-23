@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "chrisbrett.info",
+    "short_name": "chrisbrett.info",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#161E2E",
-    "background_color": "#161E2E",
+    "theme_color": "#191D21",
+    "background_color": "#191D21",
     "display": "standalone"
 }
