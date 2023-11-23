@@ -7,7 +7,7 @@
    --dark-hightlight-color: 16, 185, 129;
    --dark-section-color: 75, 85, 99;
    --dark-copy-color: 230, 230, 230;
-   --dark-bg-color: 22, 30, 46;
+   --dark-bg-color: 25, 29, 33;
   }
   
 /**
@@ -208,7 +208,7 @@ main.animate {
 
 .history-heading::after {
   content: "";
-  background-color: rgba(var(--dark-section-color), 0.5);
+  background-color: rgba(var(--dark-section-color), 0.3);
   display: block;
   height: 0.0625rem;
   left: 0;
@@ -324,7 +324,7 @@ main.animate {
  * FOOTER
  */
 .footer {
-  border-top: 0.0625rem solid rgba(var(--dark-section-color), 0.5);
+  border-top: 0.0625rem solid rgba(var(--dark-section-color), 0.3);
   color: #ffffff;
   padding-top: 1rem;
   padding-bottom: 1rem;
