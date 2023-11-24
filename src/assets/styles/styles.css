@@ -143,11 +143,20 @@ main.animate {
   font-weight: 700;
   letter-spacing: -.05rem;
   line-height: 1.25 !important;
+  text-align: center;
+  text-wrap: balance;
 }
 
 @media screen and (min-width: 48rem) {
   .hero-intro {
     font-size: 2.5rem !important;
+  }
+}
+
+@media screen and (min-width: 890px) {
+  .hero-intro {
+    text-align: left;
+    text-wrap: initial;
   }
 }
 
@@ -297,6 +306,7 @@ main.animate {
 @media screen and (min-width: 48rem) {
   .history-item-body-intro {
     font-size: 1.5rem;
+    text-wrap: initial;
   }
   
 }
