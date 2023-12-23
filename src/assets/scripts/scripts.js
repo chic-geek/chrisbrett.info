@@ -84,8 +84,8 @@ const App = (() => {
       const randomColor = getRandomColor(PRESET_HIGHLIGHT_COLORS);
 
       changeHighlightColor(randomColor);
-      animateContent();
       toggleHistoryItem();
+      animateContent();
     });
   };
 
