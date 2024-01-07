@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Frontend Developer - Chris Brett",
   description: "Professional information or 'resumé' of Chris Brett",
+  robots: "index, follow",
 };
 
 type RootLayoutProps = {
