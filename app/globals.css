@@ -2,9 +2,7 @@
  * S E T T I N G S
  */
 :root {
-  --primary-font: 'Inter', sans-serif;
-  --secondary-font: 'Inter', sans-serif;
-  --dark-hightlight-color: 16, 185, 129;
+  --dark-highlight-color: 16, 185, 129;
   --dark-section-color: 75, 85, 99;
   --dark-copy-color: 230, 230, 230;
   --dark-bg-color: 25, 29, 33;
@@ -25,7 +23,6 @@ html {
 }
 
 body {
-  font-family: var(--secondary-font);
   font-size: 1rem;
   line-height: calc(1ex / 0.32);
   margin: 0;
@@ -47,19 +44,19 @@ img {
 }
 
 a {
-  color: rgb(var(--dark-hightlight-color));
+  color: rgb(var(--dark-highlight-color));
   font-weight: 600;
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 0.125rem solid rgb(var(--dark-hightlight-color));
+  outline: 0.125rem solid rgb(var(--dark-highlight-color));
   outline-offset: 0.125rem;
 }
 
 ::selection {
   color: #ffffff;
-  background: rgb(var(--dark-hightlight-color));
+  background: rgb(var(--dark-highlight-color));
 }
 
 main {
@@ -67,7 +64,7 @@ main {
   transform: translateY(-20px);
 }
 
-main.animate {
+main.animated {
   animation: fadeAndDrop 1s ease forwards;
 }
 
@@ -114,7 +111,6 @@ main.animate {
  * BRAND
  */
 .brand {
-  font-family: var(--primary-font);
   font-weight: 700;
   line-height: 1.25;
   margin: 0;
@@ -126,7 +122,7 @@ main.animate {
 }
 
 .brand-role {
-  color: rgb(var(--dark-hightlight-color));
+  color: rgb(var(--dark-highlight-color));
   display: block;
   font-size: 1.05rem;
   text-transform: uppercase;
@@ -144,7 +140,7 @@ main.animate {
   color: #ffffff;
   font-size: 1.75rem !important;
   font-weight: 700;
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
   line-height: 1.25 !important;
   text-align: center;
   text-wrap: balance;
@@ -207,7 +203,6 @@ main.animate {
  */
 .history-heading {
   color: rgb(var(--dark-section-color));
-  font-family: var(--primary-font);
   font-size: 1rem;
   margin: 0;
   margin-bottom: 3rem;
@@ -252,7 +247,6 @@ main.animate {
   .history-item {
     border-bottom: none;
   }
-
 }
 
 .history-item:first-child {
@@ -274,7 +268,6 @@ main.animate {
 }
 
 .history-item-meta {
-  font-family: var(--primary-font);
   margin-top: 24px;
 }
 
@@ -284,11 +277,11 @@ main.animate {
 }
 
 .history-item-meta-name:hover {
-  color: rgba(255, 255, 255, .85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .history-item-meta-role {
-  color: rgb(var(--dark-hightlight-color));
+  color: rgb(var(--dark-highlight-color));
   display: block;
   font-size: 1rem;
   text-transform: uppercase;
@@ -308,8 +301,7 @@ main.animate {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: rgb(var(--dark-hightlight-color));
-  font-family: var(--primary-font);
+  color: rgb(var(--dark-highlight-color));
   font-size: 0.825rem;
   font-weight: 600;
   padding: 0;
@@ -330,7 +322,7 @@ main.animate {
   color: #ffffff;
   font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
   line-height: 1.25 !important;
   max-width: 38ch;
 }
@@ -340,7 +332,6 @@ main.animate {
     font-size: 1.5rem;
     text-wrap: initial;
   }
-
 }
 
 .history-item-body ul {
@@ -360,7 +351,7 @@ main.animate {
 }
 
 .history-item-body li span {
-  color: rgb(var(--dark-hightlight-color));
+  color: rgb(var(--dark-highlight-color));
   display: flex;
   padding-right: 0.5rem;
   transform: translateY(0.25rem);
@@ -422,7 +413,7 @@ main.animate {
 }
 
 .icon .icon-squircle {
-  fill: rgb(var(--dark-hightlight-color));
+  fill: rgb(var(--dark-highlight-color));
 }
 
 /**

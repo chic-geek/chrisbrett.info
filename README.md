@@ -8,7 +8,13 @@ The personal site of Chris Brett. Essentially my Resumé and a few extra lines /
 
 ## Technology
 
-Purposely kept this simple, making use of ParcelJS to minify files.
+Making use of NextJS.
+
+- Optionally run the project using devcontainers
+- `npm install`
+- `npm run dev`
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Deployment
 
