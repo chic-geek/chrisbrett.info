@@ -7,7 +7,7 @@ export default function HeroSection() {
         <div className="hero-selfie">
           <Image
             className="responsive"
-            src="/images/portrait.svg"
+            src="/images/portrait.png"
             alt="Selfie of Chris Brett"
             width="327"
             height="327"
