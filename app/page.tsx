@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import data from "@/app/components/HistoryList/data.json";
+import { getRandomColor } from "@/app/utils";
+import workHistoryData from "@/app/data/work-history.data.json";
+import codeExamplesData from "@/app/data/code-examples.data.json";
 import AppHead from "@/app/components/AppHead";
 import AppFoot from "@/app/components/AppFoot";
 import HeroSection from "@/app/components/HeroSection";
@@ -9,7 +11,10 @@ import HistoryList, {
   HistoryListItem,
   HistoryItemType,
 } from "@/app/components/HistoryList";
-import { getRandomColor } from "./utils";
+import CodeExamplesList, { 
+  CodeExampleListItem,
+  CodeExampleItemType 
+} from "@/app/components/CodeExamplesList";
 
 export default function Home() {
   const changeColor = () => {
@@ -30,7 +35,7 @@ export default function Home() {
       <AppHead />
       <HeroSection />
       <HistoryList>
-        {data.workHitory.map((item: HistoryItemType) => (
+        {workHistoryData.result.map((item: HistoryItemType) => (
           <HistoryListItem key={Number(item.id)} history={item} />
         ))}
 
@@ -44,6 +49,11 @@ export default function Home() {
           </p>
         </section>
       </HistoryList>
+      <CodeExamplesList>
+        {codeExamplesData.result.map((item: CodeExampleItemType) => (
+          <CodeExampleListItem key={Number(item.id)} example={item} />
+        ))}
+      </CodeExamplesList>
       <AppFoot />
     </main>
   );

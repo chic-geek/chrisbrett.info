@@ -4,9 +4,9 @@ export default function AppFoot() {
       <div className="constrained flex justifyContents-spaceBetween alignItems-center">
         <p>
           <span className="footer-meta footer-copyright">&copy;</span>
-          chrisbrett.info 2023
+          chrisbrett.info 2024
           <span className="footer-meta footer-version">
-            &ndash; <code>v1.1.0</code>
+            &ndash; <code>v1.2.0</code>
           </span>
         </p>
         <ul className="naked-list flex">
