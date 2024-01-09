@@ -5,13 +5,18 @@ type CodeExampleListItemProps = {
 };
 
 export default function CodeExampleListItem({ example }: CodeExampleListItemProps) {
-  const { title, description, urls, } = example;
+  const { title, description, urls, tags } = example;
   
   return (
     <div className="code-examples-item">
       <div>
         <h3 className="code-examples-item-title">{title}</h3>
         <p className="code-examples-item-desc">{description}</p>
+        <ul className="code-examples-item-tags flex gap-xs">
+          {tags?.map((tag, index) => (
+            <li key={index} className="pill">{tag}</li>
+          ))}
+        </ul>
       </div>
       <ul className="naked-list flex gap-md code-examples-item-links">
         {Object.entries(urls).map(([key, value], index) => (

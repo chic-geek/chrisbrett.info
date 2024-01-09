@@ -481,12 +481,6 @@ main.animated {
   }
 }
 
-.code-examples-item-title,
-.code-examples-item-desc {
-  margin: 0;
-  padding-bottom: 1rem;
-} 
-
 .code-examples-item:last-child {
   border-bottom: none;
 }
@@ -508,6 +502,33 @@ main.animated {
     border: 0.0725rem solid rgba(var(--dark-highlight-color), 0.5);
     box-shadow: 0 0 0 4px rgba(var(--dark-highlight-color), 0.15);
   }
+}
+
+.code-examples-item-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1.5rem;
+}
+
+.code-examples-item-title,
+.code-examples-item-desc {
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+/**
+ * PILLS
+ */
+.pill {
+  background-color: rgba(var(--dark-section-color), 0.4);
+  border-radius: 1rem;
+  color: rgb(var(--dark-copy-color));
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.25rem 0.7rem;
 }
 
 /**
