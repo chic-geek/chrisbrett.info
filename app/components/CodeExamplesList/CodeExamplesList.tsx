@@ -13,7 +13,7 @@ export default function CodeExamplesList({ children }: CodeExamplesListProps) {
 
       <div className="constrained">
         <div className="code-examples-intro">
-          <h3>Here is where I&apos;d like to offer some transparency around my approaches to solving various code challenges from previous job applications.</h3>
+          <h3>Let me also give you a peek into how I&apos;ve tackled a few coding challenges previously.</h3>
           <p><span className="bold">Note:</span> Organisational references are intentionally omitted to maintain a degree of confidentiality, as these challenges may still be in use.</p>
         </div>
         <div className="code-examples-container">
