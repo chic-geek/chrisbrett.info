@@ -1,12 +1,13 @@
 export default function AppFoot() {
   const appVersion = process.env.APP_VERSION;
+  const currentYear = new Date().getFullYear();
   
   return (
     <footer className="footer">
       <div className="constrained flex justifyContents-spaceBetween alignItems-center">
         <p>
           <span className="footer-meta footer-copyright">&copy;</span>
-          chrisbrett.info 2024
+          chrisbrett.info {currentYear}
           {' '}
           <span className="footer-meta footer-version">
             &ndash; <code>v{appVersion}</code>
