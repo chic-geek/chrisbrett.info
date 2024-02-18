@@ -7,13 +7,13 @@ export default function AppFoot() {
   return (
     <footer className="footer">
       <div className="constrained flex justifyContents-spaceBetween alignItems-center">
-        <div className="flex alignItems-center gap-x-sm">
+        <p className="flex alignItems-center gap-x-sm">
           <Copyright size="16" />
           <div>chrisbrett.info {currentYear}</div>
           <span className="footer-meta footer-version">
             &ndash; <code>v{appVersion}</code>
           </span>
-        </div>
+        </p>
         <ul className="naked-list flex">
           <li className="list-item flex">
             <a href="https://github.com/chic-geek" className="flex">
