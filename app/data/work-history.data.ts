@@ -10,7 +10,7 @@ export const workHistoryData = [
     "endDate": "2023-08-30",
     "lede": "Using AI to automate routine tasks and grant teams easy access to company knowledge and systems customised for enterprise needs.",
     "contributions": [
-      "Elevated the user experience by reworking the application for mobile devices, ensuring that essential features were accessible across a range of devices.",
+      "Led the development process of reworking the application for mobile devices, ensuring that essential features were accessible across a range of devices where previously they were not. This involved working closely with the design team to ensure the user experience was consistent and intuitive.",
       "Contributed to developing and expanding the internal React component library, enhancing platform scalability and maintainability.",
       "Collaborated in the re-architecting of the client-side application, focusing on enhancing code reusability and integrating an upgraded component/design system.",
       "Successfully implemented a customised @mention feature, building on top of a heavily modified TipTap installation to enhance the user experience and engagement.",
@@ -44,12 +44,12 @@ export const workHistoryData = [
     "lede": "Citizens Advice is a network of independent charities throughout the UK offering free, confidential information and advice.",
     "contributions": [
       "Design and development of the Citizens Advice design system. Creating a collection of functional CSS classes and components for large scale code reuse and consistency across digital products.",
-      "Maintaining and adding new features to bespoke case management system using Ruby, Rails and React.",
+      "Leading new feature development and contributing to existing features of a bespoke case management system using Ruby, Rails and React.",
+      "Mentor junior team members, giving guidance on solving technical problems and planning features, ultimately giving them freedom to take more of a leadership role in other projects.",
       "Discovery and development for a new CMS to scale content and it's distribution.",
-      "Mentor more junior team members, giving guidance on solving technical problems and planning features, ultimately giving them freedom to take more of a leadership role in other projects.",
-      "The maintenance of public facing and adviser only websites.",
       "Taking a personal React Component library project and turning it into a reusable library for other members of the team.",
-      "A suite of interactiveadvice toolsbuilt using ReactJS."
+      "The maintenance of public facing and adviser only websites.",
+      "A suite of interactiveadvice tools built using ReactJS."
     ]
   },
   {
