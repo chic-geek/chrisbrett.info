@@ -49,7 +49,7 @@ export const workHistoryData = [
       "Discovery and development for a new CMS to scale content and it's distribution.",
       "Taking a personal React Component library project and turning it into a reusable library for other members of the team.",
       "The maintenance of public facing and adviser only websites.",
-      "A suite of interactiveadvice tools built using ReactJS."
+      "A suite of interactive advice tools built using ReactJS."
     ]
   },
   {
