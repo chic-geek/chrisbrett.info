@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import "@/app/styles/global.css";
+import "@/assets/globals.css";
 
 export const metadata: Metadata = {
   title: "Frontend Developer - Chris Brett",

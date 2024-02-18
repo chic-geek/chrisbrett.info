@@ -1,5 +1,5 @@
 import { useState } from "react";
-import formatDateRange from "@/app/utils/date-formatting";
+import formatDateRange from "@/utils/date-formatting";
 import { HistoryItemType } from ".";
 
 type HistoryListItemProps = {

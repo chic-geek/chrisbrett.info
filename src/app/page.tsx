@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { getRandomColor } from "@/app/utils";
-import {workHistoryData} from "@/app/data/work-history.data";
-import {codeExamplesData} from "@/app/data/code-examples.data";
-import AppHead from "@/app/components/AppHead";
-import AppFoot from "@/app/components/AppFoot";
-import HeroSection from "@/app/components/HeroSection";
+import { getRandomColor } from "@/utils";
+import { workHistoryData } from "@/data/work-history.data";
+import { codeExamplesData } from "@/data/code-examples.data";
+import AppHead from "@/components/AppHead";
+import AppFoot from "@/components/AppFoot";
+import HeroSection from "@/components/HeroSection";
 import HistoryList, {
   HistoryListItem,
   HistoryItemType,
-} from "@/app/components/HistoryList";
-import CodeExamplesList, { 
+} from "@/components/HistoryList";
+import CodeExamplesList, {
   CodeExampleListItem,
-  CodeExampleItemType 
-} from "@/app/components/CodeExamplesList";
+  CodeExampleItemType,
+} from "@/components/CodeExamplesList";
 
 export default function Home() {
   const changeColor = () => {
