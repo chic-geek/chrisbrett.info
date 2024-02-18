@@ -8,7 +8,7 @@ export const workHistoryData = [
     "position": "Frontend Developer",
     "startDate": "2022-02-01",
     "endDate": "2023-08-30",
-    "lede": "Using AI to automate routine tasks and grant teams easy access to company knowledge and systems customised for enterprise needs.",
+    "lede": "Qatalog is an AI-driven enterprise solution aimed at enhancing business efficiency and decision-making.",
     "contributions": [
       "Led the development process of reworking the application for mobile devices, ensuring that essential features were accessible across a range of devices where previously they were not. This involved working closely with the design team to ensure the user experience was consistent and intuitive.",
       "Contributed to developing and expanding the internal React component library, enhancing platform scalability and maintainability.",
