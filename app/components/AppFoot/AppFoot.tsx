@@ -1,3 +1,5 @@
+import { Copyright } from "lucide-react";
+
 export default function AppFoot() {
   const appVersion = process.env.APP_VERSION;
   const currentYear = new Date().getFullYear();
@@ -5,14 +7,13 @@ export default function AppFoot() {
   return (
     <footer className="footer">
       <div className="constrained flex justifyContents-spaceBetween alignItems-center">
-        <p>
-          <span className="footer-meta footer-copyright">&copy;</span>
-          chrisbrett.info {currentYear}
-          {' '}
+        <div className="flex alignItems-center gap-x-sm">
+          <Copyright size="16" />
+          <div>chrisbrett.info {currentYear}</div>
           <span className="footer-meta footer-version">
             &ndash; <code>v{appVersion}</code>
           </span>
-        </p>
+        </div>
         <ul className="naked-list flex">
           <li className="list-item flex">
             <a href="https://github.com/chic-geek" className="flex">

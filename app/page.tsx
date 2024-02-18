@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { getRandomColor } from "@/app/utils";
-import workHistoryData from "@/app/data/work-history.data.json";
-import codeExamplesData from "@/app/data/code-examples.data.json";
+import {workHistoryData} from "@/app/data/work-history.data";
+import {codeExamplesData} from "@/app/data/code-examples.data";
 import AppHead from "@/app/components/AppHead";
 import AppFoot from "@/app/components/AppFoot";
 import HeroSection from "@/app/components/HeroSection";
@@ -35,7 +35,7 @@ export default function Home() {
       <AppHead />
       <HeroSection />
       <HistoryList>
-        {workHistoryData.result.map((item: HistoryItemType) => (
+        {workHistoryData.map((item: HistoryItemType) => (
           <HistoryListItem key={Number(item.id)} history={item} />
         ))}
 
@@ -50,7 +50,7 @@ export default function Home() {
         </section>
       </HistoryList>
       <CodeExamplesList>
-        {codeExamplesData.result.map((item: CodeExampleItemType) => (
+        {codeExamplesData.map((item: CodeExampleItemType) => (
           <CodeExampleListItem key={Number(item.id)} example={item} />
         ))}
       </CodeExamplesList>

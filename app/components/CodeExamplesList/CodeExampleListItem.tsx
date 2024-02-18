@@ -5,12 +5,15 @@ type CodeExampleListItemProps = {
 };
 
 export default function CodeExampleListItem({ example }: CodeExampleListItemProps) {
-  const { title, description, urls, tags } = example;
+  const { title, description, urls, tags, icon: Icon } = example;
   
   return (
     <div className="code-examples-item">
       <div>
-        <h3 className="code-examples-item-title">{title}</h3>
+        <div className="flex gap-x-sm">
+            <Icon size={24} style={{ color: 'rgb(var(--dark-highlight-color))' }} />
+          <h3 className="code-examples-item-title">{title}</h3>
+        </div>
         <p className="code-examples-item-desc">{description}</p>
         <ul className="code-examples-item-tags flex gap-xs">
           {tags?.map((tag, index) => (
