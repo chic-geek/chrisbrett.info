@@ -9,7 +9,7 @@ export default function AppFoot() {
       <div className="constrained flex justifyContents-spaceBetween alignItems-center">
         <p className="flex alignItems-center gap-x-sm">
           <Copyright size="16" />
-          <div>chrisbrett.info {currentYear}</div>
+          <span>chrisbrett.info {currentYear}</span>
           <span className="footer-meta footer-version">
             &ndash; <code>v{appVersion}</code>
           </span>
