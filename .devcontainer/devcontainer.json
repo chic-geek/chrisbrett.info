@@ -8,7 +8,9 @@
 		"vscode": {
 			"extensions": [
 				"GitHub.copilot",
-				"GitHub.copilot-chat"
+				"GitHub.copilot-chat",
+        "esbenp.prettier-vscode",
+				"bradlc.vscode-tailwindcss"
 			]
 		}
 	}
