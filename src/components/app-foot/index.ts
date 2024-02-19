@@ -1,1 +1,1 @@
-export { default } from "./app-foot";
+export { default as AppFoot } from "./app-foot";
