@@ -4,17 +4,17 @@ import { useEffect } from "react";
 import { getRandomColor } from "@/utils";
 import { workHistoryData } from "@/data/work-history.data";
 import { codeExamplesData } from "@/data/code-examples.data";
-import AppHead from "@/components/AppHead";
-import AppFoot from "@/components/AppFoot";
-import HeroSection from "@/components/HeroSection";
+import AppHead from "@/components/app-head";
+import AppFoot from "@/components/app-foot";
+import HeroSection from "@/components/hero-section";
 import HistoryList, {
   HistoryListItem,
   HistoryItemType,
-} from "@/components/HistoryList";
+} from "@/components/history-list";
 import CodeExamplesList, {
   CodeExampleListItem,
   CodeExampleItemType,
-} from "@/components/CodeExamplesList";
+} from "@/components/code-examples-list";
 
 export default function Home() {
   const changeColor = () => {
