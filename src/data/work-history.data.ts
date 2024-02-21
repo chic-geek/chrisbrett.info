@@ -13,7 +13,7 @@ export const workHistoryData = [
       "Led the development process of reworking the application for mobile devices, ensuring that essential features were accessible across a range of devices where previously they were not. This involved working closely with the design team to ensure the user experience was consistent and intuitive.",
       "Contributed to developing and expanding the internal React component library, enhancing platform scalability and maintainability.",
       "Collaborated in the re-architecting of the client-side application, focusing on enhancing code reusability and integrating an upgraded component/design system.",
-      "Successfully implemented a customised @mention feature, building on top of a heavily modified TipTap installation to enhance the user experience and engagement.",
+      "Maintained and led the development of new features such as a mention system for a Notion-like documentation tool, enhancing the UX and increasing user engagement within the product.",
       "Demonstrated adaptability and a thirst for learning by embracing new technologies, Typescript, styled-components, Apollo client for handling data fetching, caching and optimistic UI updates and also an introduction to Next.js.",
     ],
   },
