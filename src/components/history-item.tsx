@@ -2,7 +2,7 @@ import { HistoryItemType } from "@/types";
 import { formatDateRange } from "@/utils";
 
 import { TagItem } from "@/components/tag-item";
-import { HistoryItemContent } from "./history-item-content";
+import { HistoryItemContent } from "@/components/history-item-content";
 
 interface HistoryItemProps {
   data: HistoryItemType;
