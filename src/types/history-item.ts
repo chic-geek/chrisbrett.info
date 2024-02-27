@@ -9,4 +9,5 @@ export type HistoryItemType = {
   endDate: string;
   lede: string;
   contributions: string[];
+  tags?: string[];
 };

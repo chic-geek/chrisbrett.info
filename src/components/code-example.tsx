@@ -20,11 +20,11 @@ export function CodeExample({ data }: CodeExampleProps) {
         <p className="text-[1.05rem] leading-relaxed text-[rgb(230,230,230)]">
           {description}
         </p>
-        <ul className="flex flex-wrap gap-1">
+        <ul className="flex flex-wrap gap-2">
           {tags?.map((tag, index) => (
             <li
               key={index}
-              className="rounded-full bg-[rgba(75,85,99,0.4)] px-3 py-1 text-xs text-[rgb(230,230,230)]"
+              className="rounded-md bg-[rgba(75,85,99,0.4)] px-2 py-1 text-xs text-[rgb(230,230,230)]"
             >
               {tag}
             </li>

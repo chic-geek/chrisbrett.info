@@ -16,6 +16,7 @@ export const workHistoryData = [
       "Maintained and led the development of new features such as a mention system for a Notion-like documentation tool, enhancing the UX and increasing user engagement within the product.",
       "Demonstrated adaptability and a thirst for learning by embracing new technologies, Typescript, styled-components, Apollo client for handling data fetching, caching and optimistic UI updates and also an introduction to Next.js.",
     ],
+    tags: ["React", "Typescript", "Styled Components", "GraphQL"],
   },
   {
     id: "2",
@@ -31,6 +32,7 @@ export const workHistoryData = [
       "Developed new UI functionalities for the Token crypto investment app utilising React Native and TypeScript.",
       "Enhanced the KYC procedure by refining views and collaborating with the design team for a refreshed appearance and user experience.",
     ],
+    tags: ["React Native", "Typescript"],
   },
   {
     id: "3",
@@ -49,6 +51,7 @@ export const workHistoryData = [
       "Mentor junior team members, giving guidance on solving technical problems and planning features, ultimately giving them freedom to take more of a leadership role in other projects.",
       "Discovery and development for a new CMS to scale content and it's distribution.",
     ],
+    tags: ["React", "Ruby", "Rails", "Design Systems"],
   },
   {
     id: "4",
@@ -64,5 +67,6 @@ export const workHistoryData = [
       "Enhanced UI and added features using a custom Perl template system, optimised legacy CSS with BEM and ITCSS for improved DX. Designed and developed mobile-first views and a comprehensive brand update with new logo and guidelines.",
       "Managed system administration on custom Debian servers, including on-site maintenance in Canary Wharf, supporting the infrastructure behind NewsNow's digital presence.",
     ],
+    tags: ["Perl", "CSS", "Vanilla JS", "UX Design"],
   },
 ];
