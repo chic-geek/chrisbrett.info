@@ -1,13 +1,15 @@
-import { LucideIcon } from "lucide-react";
+import { IconType } from "react-icons";
+
+import { TagItemType } from "@/types/tag-item";
 
 export type CodeExampleItemType = {
   id: string;
   title: string;
-  icon: LucideIcon;
+  icon: IconType;
   description: string;
-  tags: string[];
+  tags: TagItemType[];
   urls: {
     source: string;
     demo: string;
-  }
+  };
 };
