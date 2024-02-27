@@ -1,49 +1,65 @@
-import { CircleDollarSign, Palette, Store } from "lucide-react";
+import {
+  SiReact as ReactIcon,
+  SiTypescript as TSIcon,
+  SiCss3 as CSSIcon,
+  SiTailwindcss as TailwindIcon,
+  SiVitest as VitestIcon,
+} from "react-icons/si";
+
+import {
+  LuCircleDollarSign as CircleDollarSignIcon,
+  LuPalette as PaletteIcon,
+  LuStore as StoreIcon,
+  LuCircleDotDashed as CircleDotDashedIcon,
+} from "react-icons/lu";
 
 export const codeExamplesData = [
   {
     id: "1",
     title: "Venue search",
-    icon: Store,
-    description: "A simple application to search and display venues in London using the Foursquare API.",
+    icon: StoreIcon,
+    description:
+      "A simple application to search and display venues in London using the Foursquare API.",
     tags: [
-      "React",
-      "TypeScript",
-      "CSS"
+      { icon: ReactIcon, label: "React" },
+      { icon: TSIcon, label: "Typescript" },
+      { icon: CSSIcon, label: "CSS" },
     ],
     urls: {
       source: "https://github.com/chic-geek/example-bcfa14",
-      demo: "https://example-bcfa14.netlify.app/"
-    }
+      demo: "https://example-bcfa14.netlify.app/",
+    },
   },
   {
     id: "2",
     title: "Persistent theming",
-    icon: Palette,
-    description: "An example React application to demonstrate persistent theming.",
+    icon: PaletteIcon,
+    description:
+      "An example React application to demonstrate persistent theming.",
     tags: [
-      "React",
-      "Context",
-      "Tailwind"
+      { icon: ReactIcon, label: "React" },
+      { icon: CircleDotDashedIcon, label: "Context" },
+      { icon: TailwindIcon, label: "Tailwind" },
     ],
     urls: {
       source: "https://github.com/chic-geek/example-p19vbw",
-      demo: "https://example-p19vbw.netlify.app/"
-    }
+      demo: "https://example-p19vbw.netlify.app/",
+    },
   },
   {
     id: "3",
     title: "Card transactions",
-    icon: CircleDollarSign,
-    description: "A React application to list card transactions for a group of users for a fraud department to review.",
+    icon: CircleDollarSignIcon,
+    description:
+      "A React application to list card transactions for a group of users for a fraud department to review.",
     tags: [
-      "React",
-      "Vittest",
-      "Tailwind"
+      { icon: ReactIcon, label: "React" },
+      { icon: VitestIcon, label: "Vitest" },
+      { icon: TailwindIcon, label: "Tailwind" },
     ],
     urls: {
       source: "https://github.com/chic-geek/example-amsp21",
-      demo: "https://example-amsp21.netlify.app/"
-    }
-  }
-]
+      demo: "https://example-amsp21.netlify.app/",
+    },
+  },
+];

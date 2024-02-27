@@ -1,4 +1,4 @@
-import { Copyright } from "lucide-react";
+import { LuCopyright as CopyrightIcon } from "react-icons/lu";
 
 import { SocialIcons } from "@/components/social-icons";
 import { Container } from "@/components/container";
@@ -12,7 +12,7 @@ export function Footer() {
       <Container>
         <div className="flex items-center justify-between py-5 md:py-10">
           <div className="flex items-center gap-x-2 text-[rgb(75,85,99)] max-[400px]:text-sm">
-            <Copyright size="16" />
+            <CopyrightIcon size="16" />
             <div>chrisbrett.info</div>
             <div>{currentYear}</div>
             <div className="hidden">v{appVersion}</div>

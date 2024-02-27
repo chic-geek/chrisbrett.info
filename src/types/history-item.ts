@@ -1,3 +1,5 @@
+import { TagItemType } from "@/types/tag-item";
+
 export type HistoryItemType = {
   id: string;
   company: {
@@ -9,5 +11,5 @@ export type HistoryItemType = {
   endDate: string;
   lede: string;
   contributions: string[];
-  tags?: string[];
+  tags?: TagItemType[];
 };
