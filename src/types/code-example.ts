@@ -9,5 +9,5 @@ export type CodeExampleItemType = {
   urls: {
     source: string;
     demo: string;
-  }
+  };
 };
