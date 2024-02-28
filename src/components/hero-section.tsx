@@ -18,10 +18,10 @@ export function HeroSection() {
             </div>
           </div>
           <div className="lg:w-2/3">
-            <h2 className="text-balance text-center text-[1.75rem] font-semibold leading-tight tracking-[-0.03rem] md:text-wrap md:text-[2.5rem] lg:text-left">
+            <h1 className="text-balance text-center text-[1.75rem] font-semibold leading-tight tracking-[-0.03rem] md:text-wrap md:text-[2.5rem] lg:text-left">
               I&apos;m a London-based Frontend developer keen on crafting clean,
               functional products that address real customer needs.
-            </h2>
+            </h1>
           </div>
         </div>
       </Container>
