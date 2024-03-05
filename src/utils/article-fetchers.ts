@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 
-const CONTENT_DIR = path.join(process.cwd(), "src/articles");
+const CONTENT_DIR = path.join(process.cwd(), "src/data/articles");
 
 export async function getAllArticleSlugs() {
   const files = fs.readdirSync(CONTENT_DIR);
