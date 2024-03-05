@@ -11,5 +11,9 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return <html lang="en">{children}</html>;
+  return (
+    <html lang="en" className="h-full">
+      {children}
+    </html>
+  );
 }

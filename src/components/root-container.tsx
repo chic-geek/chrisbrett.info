@@ -31,7 +31,10 @@ export function RootContainer({ children }: RootContainerProps) {
   return (
     <div
       id="root-container"
-      className={cn("px-8 md:px-16", jsEnabled ? "js-enabled" : "")}
+      className={cn(
+        "flex min-h-screen flex-col px-8 md:px-16",
+        jsEnabled ? "js-enabled" : "",
+      )}
     >
       {children}
     </div>
