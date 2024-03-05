@@ -17,7 +17,8 @@ const PROSE_STYLES = [
   "prose-h4:tracking-[-0.03rem]",
   "prose-h4:font-semibold",
   "mt-14",
-  "text-lg",
+  "text-base",
+  "leading-relaxed",
   "text-[rgb(230,230,230)]",
 ];
 
@@ -34,12 +35,19 @@ interface ArticlePageProps {
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const article = await getArticleBySlug(params.slug);
   const { articleFrontmatter, articleContent } = article;
-  const { title, description, category, author } = articleFrontmatter;
+  const { title, description, category, author, published } =
+    articleFrontmatter;
+
+  const date = new Date(published as string).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <article>
-      <header className="border-b border-[rgba(75,85,99,0.3)] pb-8">
-        <div className="my-5 flex items-center gap-x-3">
+      <header className="flex flex-col gap-y-6 border-b border-[rgba(75,85,99,0.3)] pb-12 pt-6 md:pt-10">
+        <div className="flex items-center gap-x-3">
           <Image
             alt={`${author as string}'s avatar image`}
             src={`/images/avatar-${(author as string).toLocaleLowerCase().split(" ").join("-")}.png`}
@@ -52,15 +60,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <span className="font-semibold">{author as string}</span>
           </div>
         </div>
-        <h1 className="leading-tighter md:leading-tighter mb-4 max-w-4xl text-balance text-5xl font-bold tracking-[-0.06rem] text-white md:text-wrap md:text-6xl">
+        <h1 className="leading-tighter md:leading-tighter max-w-4xl text-balance text-5xl font-bold tracking-[-0.06rem] text-white md:text-wrap md:text-6xl">
           {title as string}
         </h1>
         <p className="max-w-[65ch] text-lg text-[rgb(105,117,135)]">
           {description as string}
         </p>
-        <span className="my-4 inline-block rounded-md bg-[rgba(75,85,99,0.35)] px-2 py-1 text-xs font-semibold text-[rgb(230,230,230)]">
-          {category as string}
-        </span>
+        <div>
+          <span className="inline-flex rounded-md bg-[rgba(75,85,99,0.35)] px-2 py-1 text-xs font-semibold text-[rgb(230,230,230)]">
+            {category as string}
+          </span>
+        </div>
       </header>
       <div className={cn("", PROSE_STYLES)}>{articleContent}</div>
     </article>
