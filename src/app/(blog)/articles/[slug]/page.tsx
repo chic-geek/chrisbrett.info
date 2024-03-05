@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import "@/assets/highlightjs-github-dark.css";
 import { cn, getAllArticleSlugs, getArticleBySlug } from "@/utils";
 
 const PROSE_STYLES = [

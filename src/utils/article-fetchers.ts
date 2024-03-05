@@ -2,6 +2,7 @@
 
 import fs from "fs";
 import path from "path";
+import rehypeHighlight from "rehype-highlight";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/data/articles");
@@ -20,7 +21,13 @@ export async function getArticleBySlug(slug: string) {
   const { frontmatter: articleFrontmatter, content: articleContent } =
     await compileMDX({
       source: file_contents,
-      options: { parseFrontmatter: true },
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [rehypeHighlight as any],
+        },
+      },
     });
 
   return {
