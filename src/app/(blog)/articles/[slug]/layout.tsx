@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { RootContainer } from "@/components/root-container";
 
-type HomepageLayoutProps = {
+type ArticleLayoutProps = {
   children: React.ReactNode;
 };
 
@@ -17,7 +17,7 @@ const inter = Inter({
   weight: ["300", "400", "600", "700"],
 });
 
-export default function HomepageLayout({ children }: HomepageLayoutProps) {
+export default function ArticleLayout({ children }: ArticleLayoutProps) {
   return (
     <body
       className={`${inter.className} h-full bg-[rgb(26,27,30)] text-[rgb(230,230,230)]`}
