@@ -1,0 +1,171 @@
+---
+title: "Updating my personal site with a NextJS blog"
+description: "A personal note about why and how I updated my personal site with a NextJS blog. It's meant as a reference for myself and others."
+category: "Reflection"
+author: "Chris Brett"
+published: "2024-03-07"
+---
+
+## Introduction
+
+For a while now I've had a bunch of articles written and stored in markdown format. I've been wanting to display these on my personal site for a while now, but I've put it off time and again. I decided to use this as an opportunity to learn more about NextJS using MDX.
+
+## What is MDX?
+
+I won't go into too much detail as [mdxjs.com](https://mdxjs.com/) does a better job of explaining, but in short it allows you to add JSX to your markdown files meaning you can add React components to your markdown files, great for adding interactivity to articles.
+
+## Why NextJS and MDX?
+
+Up until about about a year ago, this site was built with static `HTML`, `CSS` and `JS`. I didn't need anything flashy previously and the using `ruby-sass` all those years ago to compile my `SCSS` was enough for me. I didn't need a database, I didn't need a server, I didn't need anything dynamic. I just needed a place to host information about me.
+However. When it came to adding new content or a new design, this was painful. `ruby-sass` was no longer maintained and I had to use `node-sass` instead. I had to compile my `SCSS` every time I made a change, I had to manually go into each file and update the `HTML` with new content. It wasn't much fun. My simple solution was to introduce [ParcelJS](https://parceljs.org/).
+
+So what changed, how'd I get to a full NextJS build? Well, a little while back I'd been exposed to the Next framework at work and had been reading plenty of articles and watching Youtuber's galore talk about React Server Components and the problems they solve. Diving a little deeping into this topic over the coming months, I found myself enjoying building side projects this way and it reminded me of the days when I was using [Ruby on Rails](https://rubyonrails.org/). The ease of creating routes and connecting/interacting with a database directly felt like a breath of fresh air, or stale air that still smells really nice. All that to say, not having to implement GraphQL in some form, like Apollo Client just to sync data from a database was a **huge** win for me.
+
+Why MDX though? Well I wanted to keep my articles in markdown format, but I also wanted to be able to add interactivity to them. I didn't want to have to write a whole new component for each article, I wanted to be able to add a component to a markdown file and have it work. MDX was a well-enough documented solution. Or so I thought.
+
+## The reason I'm writing this article
+
+Simply put, I just couldn't find a good enough example of how to use MDX with NextJS. I came across bits of info here and bits there. Read the documentation, but for whatever reason it didn't just work out the box like I'd hoped. I had to do a bit of digging and a bit of trial and error to get it to work. I'm writing this article as a reference for myself and others who might be in the same boat.
+
+## The setup
+
+I'm not going to go into the setup of a NextJS project, there are plenty of articles and videos out there that do a better job than I could. I'm going to assume you have a NextJS project set up and you're ready to go.
+
+### Installing the necessary packages
+
+First things first, you'll need to install the necessary packages. Run the following command in your terminal:
+
+```bash
+npm i next-mdx-remote gray-matter
+```
+
+- [`next-mdx-remote`]() is a package that allows you to use MDX with NextJS.
+- [`gray-matter`]() is a package that allows you to parse frontmatter from markdown files.
+
+### Setting up the blog route
+
+Next item on the agenda is to create a route for where you'd like to display your blog posts. I created the following directory structure `src/app/(blog)/articles/[slug]` and added inside this, a `page.tsx` file. This is where the code for displaying the blog post will go.
+
+Let's add some basic code to the `page.tsx` file we just created:
+
+```tsx
+interface ArticlePageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateStaticParams() {
+  return getAllArticleSlugs();
+}
+
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { articleFrontmatter, articleContent } = await getArticleBySlug(params);
+
+  return (
+    <article>
+      <h1>This is our template for a blog post</h1>
+    </article>
+  );
+}
+```
+
+Don't worry that there's some functions for fetching article slugs and getting an article by slug that don't exist yet. We'll get to that in a next.
+
+### Getting the article slugs
+
+We need to get the slugs of all our articles so we can generate the routes for them. Create a file called `getAllArticleSlugs.ts` in the same directory as the `page.tsx` file (or anywhere you'd like) and add the following code:
+
+```ts
+"use server";
+
+import fs from "fs";
+import path from "path";
+
+const CONTENT_DIR = path.join(process.cwd(), "src/articles");
+
+export async function getAllArticleSlugs() {
+  const files = fs.readdirSync(CONTENT_DIR);
+  const slugs = files.map((file) => ({ slug: path.parse(file).name }));
+
+  return slugs;
+}
+```
+
+### Getting the article content
+
+Now we need to get the content of the article. Create a file called `getArticleBySlug.ts` in the same directory as the `page.tsx` file (or again anywhere you'd like) and add the following code:
+
+```ts
+"use server";
+
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+const CONTENT_DIR = path.join(process.cwd(), "src/articles");
+
+export async function getArticleBySlug({ slug }: { slug: string }) {
+  const file = path.join(CONTENT_DIR, `${slug}.mdx`);
+  const markdownFileContents = fs.readFileSync(file, "utf-8");
+
+  const { data: articleFrontmatter, content: articleContent } =
+    matter(markdownFileContents);
+
+  return {
+    articleFrontmatter,
+    articleContent,
+    articleSlug: slug,
+  };
+}
+```
+
+There is some duplicated code here for the `CONTENT_DIR` variable. You could extract this to a separate file and import it into both files, but it's fine for demo purposes.
+
+### Creating the article markdown files
+
+Now we need to create the article markdown files. Create a directory that relates to your `CONTENT_DIR` so in this example, `articles` in the `src` directory and add a markdown file called `hello-world.mdx` with the following content:
+
+```md
+---
+title: "Hello world!"
+description: "My first blog post"
+---
+
+# Add your markdown content here
+
+This is my first blog post. I hope you enjoy it.
+```
+
+### Displaying the article content
+
+Now we need to display the article content. Update the `page.tsx` file to the following which will pull out the frontmatter and content from the article and display it.
+
+```tsx
+...
+
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  ...
+
+  const { title, description } = articleFrontmatter;
+
+  return (
+    <article>
+      <header>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </header>
+
+      <div>
+        <MDXRemote source={articleContent} />
+      </div>
+    </article>
+  );
+}
+```
+
+There we have it, a very simple example of how to bring in content from markdown files and display it using MDX with NextJS. I hope this helps someone out there get started or just future me who's not done this in a while.
+
+## Conclusion
+
+Of course there is more to do, such as adding custom components to your markdown files and styling, but this should be a good starting point and I'll cover those in a separate articles. If it is helpful, the code to build this example is similar to the code I used to build this site and you can see it that for yourself on [Github](https://github.com/chic-geek/chrisbrett.info).

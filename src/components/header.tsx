@@ -1,21 +1,22 @@
 import { SocialIcons } from "@/components/social-icons";
 import { Container } from "@/components/container";
+import Link from "next/link";
 
 export function Header() {
   return (
     <header>
       <Container>
         <div className="flex items-center justify-between py-8 md:pt-24">
-          <div className="text-[1.75rem] font-semibold leading-tight max-[400px]:text-xl">
-            <span className="flex">
-              <span>Chris Brett</span>
-              <span className="ml-2 origin-bottom-right animate-[wave_3s_ease-in-out_infinite] text-3xl max-[400px]:text-xl">
-                👋
+          <div className="flex gap-x-1 text-[1.75rem] max-[400px]:text-xl">
+            <Link href="/" className="">
+              <span className="font-semibold tracking-[-0.03rem] text-[rgb(16,185,129)] [.js-enabled_&]:text-[rgb(var(--highlight-color))]">
+                chrisbrett
               </span>
-            </span>
-            <span className="block text-[1.05rem] uppercase text-[rgb(16,185,129)] max-[400px]:text-xs [.js-enabled_&]:text-[rgb(var(--highlight-color))]">
-              Frontend Developer
-            </span>
+              <span className="font-extralight">.info</span>
+            </Link>
+            <div className="origin-bottom-right animate-[wave_3s_ease-in-out_infinite]">
+              👋
+            </div>
           </div>
           <SocialIcons />
         </div>
