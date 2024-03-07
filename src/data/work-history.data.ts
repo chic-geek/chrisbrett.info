@@ -4,14 +4,10 @@ import {
   SiStyledcomponents as StyledComponentsIcon,
   SiGraphql as GraphQLIcon,
   SiRubyonrails as RailsIcon,
-  SiCss3 as CSSIcon,
-  SiJavascript as JSIcon,
   SiTestinglibrary as TestingLibraryIcon,
 } from "react-icons/si";
 
 import { LuLayers as LayersIcon } from "react-icons/lu";
-import { MdCode as PerlIcon } from "react-icons/md";
-import { RiPaintFill as UXIcon } from "react-icons/ri";
 
 export const workHistoryData = [
   {
@@ -81,27 +77,6 @@ export const workHistoryData = [
       { icon: RailsIcon, label: "Rails" },
       { icon: TestingLibraryIcon, label: "Testing library" },
       { icon: LayersIcon, label: "Design systems" },
-    ],
-  },
-  {
-    id: "4",
-    company: {
-      name: "NewsNow",
-      url: "https://www.newsnow.co.uk/",
-    },
-    position: "Web Developer",
-    startDate: "2016-03-01",
-    endDate: "2017-03-28",
-    lede: "A UK independent news aggregator, providing continuous automated content delivery.",
-    contributions: [
-      "Enhanced UI and added features using a custom Perl template system, optimised legacy CSS with BEM and ITCSS for improved DX. Designed and developed mobile-first views and a comprehensive brand update with new logo and guidelines.",
-      "Managed system administration on custom Debian servers, including on-site maintenance in Canary Wharf, supporting the infrastructure behind NewsNow's digital presence.",
-    ],
-    tags: [
-      { icon: PerlIcon, label: "Perl" },
-      { icon: CSSIcon, label: "CSS" },
-      { icon: JSIcon, label: "Vanilla JS" },
-      { icon: UXIcon, label: "UX Design" },
     ],
   },
 ];

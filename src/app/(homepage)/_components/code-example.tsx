@@ -1,5 +1,7 @@
 import { CodeExampleItemType } from "@/types";
 
+import { Heading } from "@/components/ui/heading";
+import { TextElement } from "@/components/ui/text-element";
 import { TagItem } from "@/components/tag-item";
 
 interface CodeExampleProps {
@@ -12,19 +14,17 @@ export function CodeExample({ data }: CodeExampleProps) {
   return (
     <div className="flex flex-col justify-between gap-y-6 rounded-3xl bg-[rgb(31,32,36)] p-8 focus-within:bg-[rgba(var(--highlight-color),0.15)] hover:bg-[rgba(var(--highlight-color),0.15)]">
       <div className="flex flex-col gap-y-4">
-        <h3 className="items-basline flex gap-x-2 text-xl font-semibold leading-tight tracking-[-0.03rem] text-white">
+        <Heading level="3" className="flex items-center gap-x-2">
           <Icon
             size={24}
             className="text-[rgb(16,185,129)] [.js-enabled_&]:text-[rgb(var(--highlight-color))]"
           />
           <span>{title}</span>
-        </h3>
-        <p className="text-[1.05rem] leading-relaxed text-[rgb(230,230,230)]">
-          {description}
-        </p>
+        </Heading>
+        <TextElement>{description}</TextElement>
       </div>
       <div className="flex flex-col gap-y-4">
-        <ul className="flex flex-wrap gap-2 ">
+        <ul className="flex flex-wrap gap-2">
           {tags?.map((tag, index) => <TagItem key={index} data={tag} />)}
         </ul>
         <ul className="flex items-center gap-4">

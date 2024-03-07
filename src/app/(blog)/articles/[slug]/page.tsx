@@ -1,26 +1,60 @@
-import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeHighlight from "rehype-highlight";
+import langJS from "highlight.js/lib/languages/javascript";
+import langTS from "highlight.js/lib/languages/typescript";
+import langCSS from "highlight.js/lib/languages/css";
 
 import "@/assets/highlightjs-github-dark.css";
-import { cn, getAllArticleSlugs, getArticleBySlug } from "@/utils";
+import { getAllArticleSlugs, getArticleBySlug } from "@/utils";
+import { Title } from "./_components/title";
+import { Description } from "./_components/description";
+import { Prose } from "./_components/prose";
+import { Author } from "./_components/author";
+import { TextElement } from "@/components/ui/text-element";
+import { Heading } from "@/components/ui/heading";
+import { Container } from "@/components/container";
 
-const PROSE_STYLES = [
-  "prose",
-  "prose-invert",
-  "prose-a:text-[rgb(var(--highlight-color))]",
-  "prose-a:font-semibold",
-  "prose-h1:tracking-[-0.03rem]",
-  "prose-h1:font-semibold",
-  "prose-h2:tracking-[-0.03rem]",
-  "prose-h2:font-semibold",
-  "prose-h3:tracking-[-0.03rem]",
-  "prose-h3:font-semibold",
-  "prose-h4:tracking-[-0.03rem]",
-  "prose-h4:font-semibold",
-  "mt-14",
-  "text-base",
-  "leading-relaxed",
-  "text-[rgb(230,230,230)]",
-];
+const mdxCustomComponents = {
+  h1: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="1" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h2: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="2" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h3: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="3" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h4: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="4" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  p: (props: React.PropsWithChildren<{}>) => (
+    <TextElement {...props}>{props.children}</TextElement>
+  ),
+};
+
+const mdxOptions = {
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      rehypeHighlight as any,
+      {
+        languages: {
+          javascript: langJS,
+          typescript: langTS,
+          css: langCSS,
+        },
+      },
+    ],
+  },
+};
 
 export async function generateStaticParams() {
   return getAllArticleSlugs();
@@ -33,8 +67,8 @@ interface ArticlePageProps {
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const article = await getArticleBySlug(params.slug);
-  const { articleFrontmatter, articleContent } = article;
+  const { articleFrontmatter, articleContent } = await getArticleBySlug(params);
+
   const { title, description, category, author, published } =
     articleFrontmatter;
 
@@ -45,34 +79,34 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   });
 
   return (
-    <article>
-      <header className="flex flex-col gap-y-6 border-b border-[rgba(75,85,99,0.3)] pb-12 pt-6 md:pt-10">
-        <div className="flex items-center gap-x-3">
-          <Image
-            alt={`${author as string}'s avatar image`}
-            src={`/images/avatar-${(author as string).toLocaleLowerCase().split(" ").join("-")}.png`}
-            className="inline-block h-10 w-10 rounded-full ring-2 ring-[rgba(75,85,99,0.75)]"
-            width={40}
-            height={40}
-          />
-          <div className="flex flex-col">
-            <span className="text-sm text-[rgb(105,117,135)]">Author</span>
-            <span className="font-semibold">{author as string}</span>
+    <Container>
+      <article>
+        <header className="flex flex-col gap-y-2 border-b border-gray-600/30 pb-8 pt-6 md:pb-14 md:pt-10">
+          <div>
+            <span className="inline-block rounded-md bg-gray-600/20 px-2 py-1 text-xs font-semibold text-[rgb(230,230,230)]">
+              {category}
+            </span>
           </div>
-        </div>
-        <h1 className="leading-tighter md:leading-tighter max-w-4xl text-balance text-5xl font-bold tracking-[-0.06rem] text-white md:text-wrap md:text-6xl">
-          {title as string}
-        </h1>
-        <p className="max-w-[65ch] text-lg text-[rgb(105,117,135)]">
-          {description as string}
-        </p>
-        <div>
-          <span className="inline-flex rounded-md bg-[rgba(75,85,99,0.35)] px-2 py-1 text-xs font-semibold text-[rgb(230,230,230)]">
-            {category as string}
-          </span>
-        </div>
-      </header>
-      <div className={cn("", PROSE_STYLES)}>{articleContent}</div>
-    </article>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
+          <div className="flex items-center gap-x-4 pt-4 md:pt-6">
+            <Author author={author} />
+            <TextElement
+              as="span"
+              className="border-l border-gray-600/40 pl-4 text-sm font-semibold text-gray-300"
+            >
+              {date}
+            </TextElement>
+          </div>
+        </header>
+        <Prose>
+          <MDXRemote
+            source={articleContent}
+            components={mdxCustomComponents}
+            options={mdxOptions}
+          />
+        </Prose>
+      </article>
+    </Container>
   );
 }

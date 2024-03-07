@@ -2,8 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import rehypeHighlight from "rehype-highlight";
-import { compileMDX } from "next-mdx-remote/rsc";
+import matter from "gray-matter";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/data/articles");
 
@@ -14,25 +13,16 @@ export async function getAllArticleSlugs() {
   return slugs;
 }
 
-export async function getArticleBySlug(slug: string) {
+export async function getArticleBySlug({ slug }: { slug: string }) {
   const file = path.join(CONTENT_DIR, `${slug}.mdx`);
-  const file_contents = fs.readFileSync(file, "utf-8");
+  const markdownFileContents = fs.readFileSync(file, "utf-8");
 
-  const { frontmatter: articleFrontmatter, content: articleContent } =
-    await compileMDX({
-      source: file_contents,
-      options: {
-        parseFrontmatter: true,
-        mdxOptions: {
-          remarkPlugins: [],
-          rehypePlugins: [rehypeHighlight as any],
-        },
-      },
-    });
+  const { data: articleFrontmatter, content: articleContent } =
+    matter(markdownFileContents);
 
   return {
     articleFrontmatter,
     articleContent,
-    articleSlug: path.parse(file).name,
+    articleSlug: slug,
   };
 }

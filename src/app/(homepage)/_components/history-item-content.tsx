@@ -4,6 +4,9 @@ import { useState } from "react";
 
 import { cn } from "@/utils";
 
+import { Heading } from "@/components/ui/heading";
+import { TextElement } from "@/components/ui/text-element";
+
 interface HistoryItemContentProps {
   lede: string;
   contributions: string[];
@@ -17,10 +20,10 @@ export function HistoryItemContent({
 
   return (
     <div className="md:2/3">
-      <div className="flex max-w-[65ch] flex-col gap-y-6 text-lg">
-        <p className="text-balance text-[1.35rem] font-semibold leading-tight tracking-[-0.03rem] text-white md:text-2xl">
+      <div className="flex max-w-[65ch] flex-col gap-y-6">
+        <Heading level="2" className="text-balance">
           {lede}
-        </p>
+        </Heading>
         <ul
           className={cn(
             "flex flex-col gap-y-4",
@@ -47,7 +50,7 @@ export function HistoryItemContent({
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </span>
-              <div>{contribution}</div>
+              <TextElement>{contribution}</TextElement>
             </li>
           ))}
         </ul>

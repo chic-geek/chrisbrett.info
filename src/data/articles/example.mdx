@@ -1,54 +1,54 @@
 ---
-title: "How AI code generation works"
-description: "Explore the capabilities and benefits of AI code generation, and how it can improve the developer experience for your enterprise."
+title: "Setting up a Next.js 13 Blog with MDX and TailwindCSS"
+description: "A simple tutorial on how to setup a Next.js 13 Blog with MDX and TailwindCSS utilising the new App Directory and MDX Components."
 category: "Opinion"
 author: "Chris Brett"
 published: "2024-01-01"
 ---
 
-# Heading level 1
+## Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra ornare magna iaculis tristique. Sed pellentesque mattis sapien, vel imperdiet nisl varius dignissim. In placerat nunc ut nulla lacinia.
+In this tutorial, I'll show you how to setup a Next.js 13 Blog that utilises the new App Directory. It will use MDX (Extended Markdown) pages for the blogs themselves as well as TailwindCSS for the automatic styling of these blogs. We'll extend the functionality of the blog by looking at MDX Components that can add interactivity to our MDX blogs. Finally, we'll look at remark & rehype plugins, specifically remark-gfm which will allow "GitHub Flavoured" markdown such as tables and task lists.
 
-## This is a heading level 2
+- [next/mdx](https://www.google.com) - The official tool built by the Next.js team
+- [mdx-bundler](https://www.google.com) - A fast, mdx compiler and bundler
+- [next-mdx-remote](https://www.google.com) - Built by Hashicorp
 
-### Headling level 3
+## Setting up our app
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra ornare magna iaculis tristique. Sed pellentesque mattis sapien, vel imperdiet nisl varius dignissim. Nunc sit amet elit at augue semper sagittis et ac lorem. Duis maximus rutrum est, at tempus lacus imperdiet et. Mauris eget ipsum eros. Proin auctor rhoncus nisl. Donec lobortis non sapien vel dictum. Nullam leo sem, interdum nec augue ut, gravida laoreet leo. Nulla et ipsum enim. Sed ullamcorper non arcu at lobortis. Quisque erat urna, feugiat at lectus quis, molestie molestie mi. Etiam auctor maximus eros, vel accumsan dui pretium in. Duis faucibus, elit ac consequat posuere, purus nulla facilisis risus, sit amet sagittis lorem eros a leo. Ut vel auctor tellus, vel porttitor neque. Vivamus pellentesque metus et tortor egestas finibus.
+To setup our application, we're going to use the following command. This will create the basic Next.js template application with TailwindCSS automatically configured.
 
-Fusce nulla nisi, iaculis in convallis ac, mollis quis odio. Proin vitae porttitor erat. In placerat nunc ut nulla lacinia, non commodo nibh sodales. Donec auctor elit sagittis leo egestas pretium. In vel efficitur diam, quis efficitur nibh. Aenean ultricies commodo ligula vitae hendrerit. Duis vitae dolor aliquet arcu accumsan commodo quis eu augue. Aenean mi magna, rhoncus at sapien eget, porta hendrerit justo. Sed ac ligula maximus, mattis lorem bibendum, tristique tortor. Aliquam venenatis justo nulla, et lobortis nisi gravida eu.
-
-### Heading level 3 with a list
-
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Duis viverra ornare magna iaculis tristique.
-  - Indented list item
-  - Another indented list item
-- Sed pellentesque mattis sapien, vel imperdiet nisl varius dignissim.
-- Nunc sit amet elit at augue semper sagittis et ac lorem.
-
-> This is a blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis viverra ornare magna iaculis tristique. Sed pellentesque mattis sapien, vel imperdiet nisl varius dignissim. Nunc sit amet elit at augue semper sagittis et ac lorem. Duis maximus rutrum est, at tempus lacus imperdiet et. Mauris eget ipsum eros. Proin auctor rhoncus nisl. Donec lobortis non sapien vel dictum. Nullam leo sem, interdum nec augue ut, gravida laoreet leo. Nulla et ipsum enim. Sed ullamcorper non arcu at lobortis. Quisque erat urna, feugiat at lectus quis, molestie molestie mi. Etiam auctor maximus eros, vel accumsan dui pretium in. Duis faucibus, elit ac consequat posuere, purus nulla facilisis risus, sit amet sagittis lorem eros a leo. Ut vel auctor tellus, vel porttitor neque. Vivamus pellentesque metus et tortor egestas finibus.
-
-```jsx
-interface ContainerProps {
-  children: React.ReactNode;
-}
-
-export function Container({ children }: ContainerProps) {
-  return (
-    <div className="mx-auto w-full max-w-5xl">
-      {children}
-    </div>
-    );
-}
+```bash
+npx create-next-app@latest --tailwind
 ```
 
-## This is another heading level 2
+When prompted we will select the following options:
 
-Vestibulum eu nunc commodo erat vestibulum efficitur id eu dui. Maecenas eget velit at metus suscipit euismod eget sed ante. Sed non sem vitae ex feugiat consectetur sit amet ac eros. Integer eleifend urna eu quam tempus, vel tempor enim finibus. Vivamus volutpat porta laoreet. Aenean a tellus ut felis condimentum sagittis luctus eget arcu. Nam ac dictum sapien, eget euismod felis. Duis tempus felis quis ante luctus, condimentum commodo nulla molestie. Maecenas dignissim sapien sed malesuada vehicula. Phasellus arcu nulla, ultricies id mauris in, ultricies finibus mi. Vestibulum nec pulvinar purus. Pellentesque maximus feugiat urna, sit amet rutrum odio tristique in.
+- Project Name - choose an appropriate name such as my-mdx-blog
+- Use Typescript - Yes
+- Use ESLint - Yes
+- Use src/ directory - No
+- Use app/ directory - Yes
+- Would you like to customize the default import alias - No
 
-#### Heading level 4
+### Setup Packages
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Duis viverra ornare magna iaculis tristique.
-- Sed [pellentesque](https://www.google.com) mattis sapien, vel imperdiet nisl varius dignissim.
+There are a few required packages to install; to do so, run the following commands:
+
+- `npm install next-mdx-remote` - We will use this to display our MDX files as blogs
+- `npm install gray-matter` - This will allow us to add metadata to our blogs such as title or description
+- `npm install @tailwindcss/typography` - This will allow us to automatically style every markdown element in our blog without writing the CSS for every component ourself.
+
+#### Add TailwindCSS Plugin
+
+In the `tailwind.config.js` file, we now need to add the typography plugin to our current TailwindCSS setup:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  ...
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
+}
+```

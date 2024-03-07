@@ -1,9 +1,10 @@
 import { HistoryItemType } from "@/types";
 import { workHistoryData } from "@/data";
 
-import { HistoryItem } from "@/components/history-item";
-import { SectionHeading } from "@/components/section-heading";
+import { TextElement } from "@/components/ui/text-element";
 import { Container } from "@/components/container";
+import { SectionHeading } from "@/components/section-heading";
+import { HistoryItem } from "./history-item";
 
 export function HistoryItemsSection() {
   return (
@@ -18,7 +19,7 @@ export function HistoryItemsSection() {
               <HistoryItem key={item.id} data={item} />
             ))}
           </ul>
-          <p className="text-center text-lg text-[rgb(230,230,230)]">
+          <TextElement className="text-center">
             For a more formal history of my work experience, check out my{" "}
             <a
               href="https://chrisbrett.notion.site/Resum-0a7c8d6b4f67459ba052da1c9e36b522"
@@ -27,7 +28,7 @@ export function HistoryItemsSection() {
               resumé
             </a>
             .
-          </p>
+          </TextElement>
         </div>
       </Container>
     </section>

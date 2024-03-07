@@ -9,11 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mdx-js/loader": "^3.0.1",
-    "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^14.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "clsx": "^2.1.0",
+    "gray-matter": "^4.0.3",
     "next": "14.0.4",
     "next-mdx-remote": "^4.4.1",
     "react": "^18",
@@ -23,7 +21,6 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@types/mdx": "^2.0.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
