@@ -8,10 +8,10 @@ import { HistoryItem } from "./history-item";
 
 export function HistoryItemsSection() {
   return (
-    <section className="py-4">
-      <SectionHeading>
+    <section className="">
+      {/* <SectionHeading>
         <h2>Recent history</h2>
-      </SectionHeading>
+      </SectionHeading> */}
       <Container>
         <div className="flex flex-col gap-y-6">
           <ul>

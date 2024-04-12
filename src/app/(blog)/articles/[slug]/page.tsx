@@ -14,48 +14,6 @@ import { TextElement } from "@/components/ui/text-element";
 import { Heading } from "@/components/ui/heading";
 import { Container } from "@/components/container";
 
-const mdxCustomComponents = {
-  h1: (props: React.PropsWithChildren<{}>) => (
-    <Heading level="1" {...props}>
-      {props.children}
-    </Heading>
-  ),
-  h2: (props: React.PropsWithChildren<{}>) => (
-    <Heading level="2" {...props}>
-      {props.children}
-    </Heading>
-  ),
-  h3: (props: React.PropsWithChildren<{}>) => (
-    <Heading level="3" {...props}>
-      {props.children}
-    </Heading>
-  ),
-  h4: (props: React.PropsWithChildren<{}>) => (
-    <Heading level="4" {...props}>
-      {props.children}
-    </Heading>
-  ),
-  p: (props: React.PropsWithChildren<{}>) => (
-    <TextElement {...props}>{props.children}</TextElement>
-  ),
-};
-
-const mdxOptions = {
-  mdxOptions: {
-    remarkPlugins: [],
-    rehypePlugins: [
-      rehypeHighlight as any,
-      {
-        languages: {
-          javascript: langJS,
-          typescript: langTS,
-          css: langCSS,
-        },
-      },
-    ],
-  },
-};
-
 export async function generateStaticParams() {
   return getAllArticleSlugs();
 }
@@ -110,3 +68,45 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     </Container>
   );
 }
+
+const mdxCustomComponents = {
+  h1: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="1" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h2: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="2" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h3: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="3" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  h4: (props: React.PropsWithChildren<{}>) => (
+    <Heading level="4" {...props}>
+      {props.children}
+    </Heading>
+  ),
+  p: (props: React.PropsWithChildren<{}>) => (
+    <TextElement {...props}>{props.children}</TextElement>
+  ),
+};
+
+const mdxOptions = {
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      rehypeHighlight as any,
+      {
+        languages: {
+          javascript: langJS,
+          typescript: langTS,
+          css: langCSS,
+        },
+      },
+    ],
+  },
+};

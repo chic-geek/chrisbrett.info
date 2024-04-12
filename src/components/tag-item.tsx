@@ -9,7 +9,7 @@ export function TagItem({ data }: TagItemProps) {
   return (
     <li className="flex items-center gap-x-1 rounded-md bg-gray-600/20 px-2 py-1 text-xs text-gray-300">
       <Icon size={14} className="text-gray-600" />
-      <span className="text-gray-300">{label}</span>
+      <span>{label}</span>
     </li>
   );
 }
