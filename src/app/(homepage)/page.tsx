@@ -51,7 +51,7 @@ export default async function Homepage() {
                         </TextElement>
                       </div>
                       <Heading
-                        level="4"
+                        level="2"
                         className="text-[rgb(16,185,129)] underline [.js-enabled_&]:text-[rgb(var(--highlight-color))]"
                       >
                         <Link href={`/articles/${article.slug}`}>
