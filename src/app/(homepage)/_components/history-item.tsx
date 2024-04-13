@@ -33,10 +33,6 @@ export function HistoryItem({ data }: HistoryItemProps) {
           <Separator orientation="vertical" className="py-3 sm:self-center" />
           <TextElement className="font-semibold">{formattedDate}</TextElement>
         </div>
-        {/* <div className="flex items-baseline justify-between gap-x-2 md:justify-start">
-          <TextElement className="font-semibold">{position}</TextElement>
-          <TextElement className="text-xs">({formattedDate})</TextElement>
-        </div> */}
         {tags ? (
           <ul className="mt-2 flex flex-wrap gap-2">
             {tags.map((tag, index) => (
