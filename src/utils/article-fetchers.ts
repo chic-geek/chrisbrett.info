@@ -31,21 +31,26 @@ export async function getArticleBySlug({ slug }: { slug: string }) {
 export async function getAllArticles() {
   const files = fs.readdirSync(CONTENT_DIR);
 
-  const articles = files.map((file) => {
-    const slug = path.parse(file).name;
-    const markdownFileContents = fs.readFileSync(
-      path.join(CONTENT_DIR, file),
-      "utf-8",
+  const articles = files
+    .map((file) => {
+      const slug = path.parse(file).name;
+      const markdownFileContents = fs.readFileSync(
+        path.join(CONTENT_DIR, file),
+        "utf-8",
+      );
+
+      const { data: articleFrontmatter } = matter(markdownFileContents);
+      const typedArticleFrontmatter = articleFrontmatter as ArticleFrontmatter;
+
+      return {
+        slug,
+        ...typedArticleFrontmatter,
+      };
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.published).getTime() - new Date(a.published).getTime(),
     );
-
-    const { data: articleFrontmatter } = matter(markdownFileContents);
-    const typedArticleFrontmatter = articleFrontmatter as ArticleFrontmatter;
-
-    return {
-      slug,
-      ...typedArticleFrontmatter,
-    };
-  });
 
   return articles;
 }
