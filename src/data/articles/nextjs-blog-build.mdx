@@ -8,29 +8,29 @@ published: "2024-03-07"
 
 ## Introduction
 
-For a while now I've had a bunch of articles written and stored in markdown format. I've been wanting to display these on my personal site for quite some time, but I've put it off time and again. I decided to use this as an opportunity to deepen my understanding of NextJS through the implementation of a blog using MDX.
+For a while now, I've had a bunch of articles written and stored in markdown format. I've wanted to display these on my personal site for quite some time, but I've put it off time and again. I decided to use this as an opportunity to deepen my understanding of Next.js through the implementation of a blog using MDX.
 
 ## What is MDX?
 
-Without diving too deep; as the official [MDX documentation](https://mdxjs.com/docs/) provides a thorough explanation. MDX simply blends JSX with markdown, enabling the React components in markdown files. It's a great way to add interactivity to your articles without having to write a whole new component for each one.
+Without diving too deep, as the official [MDX documentation](https://mdxjs.com/docs/) provides a thorough explanation: MDX simply blends JSX with markdown, enabling React components in markdown files. It's a great way to add interactivity to your articles without having to write a whole new component for each one.
 
 ## Why NextJS and MDX?
 
-Up until about about a year ago, my site was built with static `HTML`, `CSS` and `JS`. This was sufficient until the need for updates and redesigns emerged, revealing the cumbersome nature of my workflow. I'd implemented my `CSS` using the now defunct `ruby-sass`, I didn't need a database, I didn't need a server, I didn't need anything dynamic. I just needed a place to host information about me and my career so far.
+Up until about a year ago, my site was built with static `HTML`, `CSS`, and `JS`. This was sufficient until the need for updates and redesigns emerged, revealing the cumbersome nature of my workflow. I'd implemented my `CSS` using the now defunct `ruby-sass`; I didn't need a database, I didn't need a server, I didn't need anything dynamic. I just needed a place to host information about me and my career so far.
 
-However. When it came to adding new content or a new design, this was painful. `ruby-sass` was no longer maintained and I had to use `node-sass` instead. I had to compile my `SCSS` every time I made a change. I had to manually go into each file and update the `HTML` with new content. Suffice to say it wasn't much fun. My simple solution was to introduce [ParcelJS](https://parceljs.org/).
+However, when it came to adding new content or a new design, this was painful. `ruby-sass` was no longer maintained and I had to use `node-sass` instead. I had to compile my `SCSS` every time I made a change. I had to manually go into each file and update the `HTML` with new content. Suffice to say it wasn't much fun. My simple solution was to introduce [ParcelJS](https://parceljs.org/).
 
-So what changed, how'd I get to a full NextJS build? Well, a little while back I'd been exposed to the Next framework at work and had been reading plenty of articles and watching Youtuber's galore talk about React Server Components and the problems they solve. Diving a little deeper into the topic over the coming months, I found myself enjoying building side projects this way and it reminded me of the [Ruby on Rails](https://rubyonrails.org/) days. The ease of creating routes and connecting/interacting with a database directly felt easy.
+So what changed, how did I get to a full Next.js build? Well, a little while back I'd been exposed to the Next framework at work and had been reading plenty of articles and watching YouTubers galore talk about React Server Components and the problems they solve. Diving a little deeper into the topic over the coming months, I found myself enjoying building side projects this way and it reminded me of the [Ruby on Rails](https://rubyonrails.org/) days. The ease of creating routes and connecting/interacting with a database directly felt easy.
 
-Why MDX though? I wanted to keep my articles in markdown format, but I also wanted to be able to add interactivity to them. I didn't want to have to write a whole new component for each article, MDX seemed like a well-enough documented solution.
+Why MDX though? I wanted to keep my articles in markdown format, but I also wanted to be able to add interactivity to them. I didn't want to have to write a whole new component for each article; MDX seemed like a well-enough documented solution.
 
 ## The reason I'm writing this article
 
-Simply put, I just couldn't find a good enough example of how to use MDX with NextJS. I came across bits of info here and bits there. Read the documentation, but for whatever reason it didn't just work out the box like I'd hoped. I had to do a bit of digging and a bit of trial and error to get it to work. This article aims to serve as a reference for myself and others who might be in the same boat.
+Simply put, I just couldn't find a good enough example of how to use MDX with Next.js. I came across bits of info here and there. Read the documentation, but for whatever reason, it didn't just work out of the box like I'd hoped. I had to do a bit of digging and a bit of trial and error to get it to work. This article aims to serve as a reference for myself and others who might be in the same boat.
 
 ## The setup
 
-I'm not going to go into the setup of a NextJS project, there are plenty of articles and videos out there that do a better job than I could. This section assumes the existence of a Next.js project setup.
+I'm not going to go into the setup of a Next.js project, there are plenty of articles and videos out there that do a better job than I could. This section assumes the existence of a Next.js project setup.
 
 ### Installing the necessary packages
 
@@ -47,7 +47,7 @@ npm i next-mdx-remote gray-matter
 
 Establish a blog route within your project directory, for example, `src/app/(blog)/articles/[slug]`, and create a `page.tsx` file within this directory to house your blog post display logic.
 
-**Note:** Don't worry that there's some functions for fetching article slugs and getting an article by slug that don't exist yet. We'll get to that in a next.
+**Note:** Don't worry that there are some functions for fetching article slugs and getting an article by slug that don't exist yet. We'll get to that in a next.
 
 ```tsx
 interface ArticlePageProps {
@@ -167,4 +167,4 @@ There we have it, a very simple example of how to bring in content from markdown
 
 ## Conclusion
 
-Of course there is more to do, such as adding custom components to your markdown files and styling, but this should be a good starting point and I'll possibly cover those in separate articles. If it is helpful, the code for this example is similar to the code I used to build this site and you can see it that for yourself on [Github](https://github.com/chic-geek/chrisbrett.info).
+Of course, there is more to do, such as adding custom components to your markdown files and styling, but this should be a good starting point and I'll possibly cover those in separate articles. If it is helpful, the code for this example is similar to the code I used to build this site and you can see that for yourself on [Github](https://github.com/chic-geek/chrisbrett.info).

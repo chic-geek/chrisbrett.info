@@ -16,7 +16,7 @@ export function TextElement({
   return (
     <Tag
       className={cn(
-        "block text-base font-normal leading-[1.75] text-[rgb(230,230,230)]",
+        "text-base font-normal leading-[1.75] text-[rgb(230,230,230)]",
         className,
       )}
       {...restProps}
