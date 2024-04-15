@@ -12,7 +12,7 @@ export function CodeExample({ data }: CodeExampleProps) {
   const { title, description, urls, tags, icon: Icon } = data;
 
   return (
-    <div className="flex flex-col justify-between gap-y-6 rounded-3xl bg-[rgb(31,32,36)] p-8 focus-within:bg-[rgba(var(--highlight-color),0.15)] hover:bg-[rgba(var(--highlight-color),0.15)]">
+    <div className="flex flex-col justify-between gap-y-6 rounded-3xl bg-[rgb(31,32,36)] p-8 transition-colors duration-300 ease-in-out focus-within:bg-[rgba(var(--highlight-color),0.15)] hover:bg-[rgba(var(--highlight-color),0.1)]">
       <div className="flex flex-col gap-y-4">
         <Heading level="3" className="flex items-center gap-x-2">
           <Icon
