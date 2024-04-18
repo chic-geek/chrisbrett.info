@@ -3,7 +3,7 @@ interface DateObject {
   endDate: string;
 }
 
-export default function formatDateRange(obj: DateObject): string {
+export function formatDateRange(obj: DateObject): string {
   const options: Intl.DateTimeFormatOptions = {
     month: "short",
     year: "2-digit",
@@ -16,4 +16,13 @@ export default function formatDateRange(obj: DateObject): string {
   const formattedEndDate = endDate.toLocaleString("en-US", options);
 
   return `${formattedStartDate} - ${formattedEndDate}`;
+}
+
+export function articleFormattedDate(dateStr: string) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MdOutlineEditCalendar as CalendarIcon } from "react-icons/md";
 
+import { articleFormattedDate } from "@/utils";
 import { getAllArticles } from "@/utils/article-fetchers";
 import { TextElement } from "@/components/ui/text-element";
 import { Heading } from "@/components/ui/heading";
@@ -10,16 +11,6 @@ import { SectionHeading } from "@/components/section-heading";
 import { HeroSection } from "./_components/hero-section";
 import { HistoryItemsSection } from "./_components/history-items-section";
 import { CodeExamplesSection } from "./_components/code-examples-section";
-
-function articleFormattedDate(dateStr: string) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-GB", {
-    weekday: "short",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export default async function Homepage() {
   const articles = await getAllArticles();

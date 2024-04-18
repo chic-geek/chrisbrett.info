@@ -5,7 +5,11 @@ import langTS from "highlight.js/lib/languages/typescript";
 import langCSS from "highlight.js/lib/languages/css";
 
 import "@/assets/highlightjs-github-dark.css";
-import { getAllArticleSlugs, getArticleBySlug } from "@/utils";
+import {
+  articleFormattedDate,
+  getAllArticleSlugs,
+  getArticleBySlug,
+} from "@/utils";
 import { Title } from "./_components/title";
 import { Description } from "./_components/description";
 import { Prose } from "./_components/prose";
@@ -27,14 +31,13 @@ interface ArticlePageProps {
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { articleFrontmatter, articleContent } = await getArticleBySlug(params);
 
-  const { title, description, category, author, published } =
-    articleFrontmatter;
-
-  const date = new Date(published as string).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const {
+    title,
+    description,
+    category,
+    author,
+    published: publishedDate,
+  } = articleFrontmatter;
 
   return (
     <Container>
@@ -53,7 +56,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               as="span"
               className="border-l border-gray-600/40 pl-4 text-sm font-semibold text-gray-300"
             >
-              {date}
+              {articleFormattedDate(publishedDate)}
             </TextElement>
           </div>
         </header>
