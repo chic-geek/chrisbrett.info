@@ -5,3 +5,7 @@ export type ArticleFrontmatter = {
   author: string;
   published: string;
 };
+
+export type Article = {
+  slug: string;
+} & ArticleFrontmatter;
