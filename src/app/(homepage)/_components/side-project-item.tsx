@@ -1,4 +1,4 @@
-import { CodeExampleItemType } from "@/types/code-example";
+import { SideProjectItemType } from "@/types/side-project";
 
 import {
   Card,
@@ -11,12 +11,12 @@ import {
   CardLinks,
 } from "@/components/ui/card";
 
-interface CodeExampleProps {
-  data: CodeExampleItemType;
+interface SideProjectItemProps {
+  data: SideProjectItemType;
 }
 
-export function CodeExample({ data }: CodeExampleProps) {
-  const { title, description, urls, tags, icon: Icon } = data;
+export function SideProjectItem({ data }: SideProjectItemProps) {
+  const { title, description, urls, icon: Icon } = data;
 
   return (
     <Card>
@@ -25,7 +25,6 @@ export function CodeExample({ data }: CodeExampleProps) {
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter>
-        <CardTags tags={tags} />
         <CardLinks links={urls} />
       </CardFooter>
     </Card>

@@ -6,9 +6,9 @@ const PRESET_HIGHLIGHT_COLORS = [
   "251, 113, 133", // rose    [400]
 ];
 
-export default function getRandomColor() {
+export function getRandomColor() {
   const randomIndex = Math.floor(
-    Math.random() * PRESET_HIGHLIGHT_COLORS.length
+    Math.random() * PRESET_HIGHLIGHT_COLORS.length,
   );
   return PRESET_HIGHLIGHT_COLORS[randomIndex];
 }

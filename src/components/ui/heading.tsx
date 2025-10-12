@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/classnames";
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level: "1" | "2" | "3" | "4";

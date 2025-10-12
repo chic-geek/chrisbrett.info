@@ -5,11 +5,8 @@ import langTS from "highlight.js/lib/languages/typescript";
 import langCSS from "highlight.js/lib/languages/css";
 
 import "@/assets/highlightjs-github-dark.css";
-import {
-  articleFormattedDate,
-  getAllArticleSlugs,
-  getArticleBySlug,
-} from "@/utils";
+import { getAllArticleSlugs, getArticleBySlug } from "@/utils/article-fetchers";
+import { articleFormattedDate } from "@/utils/date-formatting";
 import { Title } from "./_components/title";
 import { Description } from "./_components/description";
 import { Prose } from "./_components/prose";

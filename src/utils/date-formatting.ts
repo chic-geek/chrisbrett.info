@@ -1,18 +1,22 @@
 interface DateObject {
   startDate: string;
-  endDate: string;
+  endDate?: string;
 }
 
 export function formatDateRange(obj: DateObject): string {
   const options: Intl.DateTimeFormatOptions = {
-    month: "short",
-    year: "2-digit",
+    month: "long",
+    year: "numeric",
   };
 
   const startDate = new Date(obj.startDate);
-  const endDate = new Date(obj.endDate);
-
   const formattedStartDate = startDate.toLocaleString("en-US", options);
+
+  if (!obj.endDate) {
+    return `${formattedStartDate} - present`;
+  }
+
+  const endDate = new Date(obj.endDate);
   const formattedEndDate = endDate.toLocaleString("en-US", options);
 
   return `${formattedStartDate} - ${formattedEndDate}`;

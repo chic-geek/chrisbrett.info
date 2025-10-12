@@ -1,12 +1,14 @@
-import { CodeExampleItemType } from "@/types";
-import { codeExamplesData } from "@/data";
+import { CodeExampleItemType } from "@/types/code-example";
+import { getCodeExamplesData } from "@/data/code-examples.data";
 
 import { TextElement } from "@/components/ui/text-element";
 import { SectionHeading } from "@/components/section-heading";
 import { Container } from "@/components/container";
 import { CodeExample } from "./code-example";
 
-export function CodeExamplesSection() {
+export async function CodeExamplesSection() {
+  const codeExamplesData = await getCodeExamplesData();
+
   return (
     <section className="py-4">
       <SectionHeading>
@@ -25,7 +27,7 @@ export function CodeExamplesSection() {
           </TextElement>
           <div className="grid grid-flow-row gap-6 py-6 sm:grid-cols-2 lg:grid-cols-3">
             {codeExamplesData.map((item: CodeExampleItemType) => (
-              <CodeExample key={Number(item.id)} data={item} />
+              <CodeExample key={item.id} data={item} />
             ))}
           </div>
         </div>
