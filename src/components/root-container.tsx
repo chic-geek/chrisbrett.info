@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { cn, getRandomColor } from "@/utils";
+import { cn } from "@/utils/classnames";
+import { getRandomColor } from "@/utils/get-random-color";
 
 interface RootContainerProps {
   children?: React.ReactNode;

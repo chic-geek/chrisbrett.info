@@ -1,10 +1,12 @@
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
-import { sideProjectsData } from "@/data/side-projects.data";
+import { getSideProjectsData } from "@/data/side-projects.data";
 import { SideProjectItemType } from "@/types/side-project";
 import { SideProjectItem } from "./side-project-item";
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const sideProjectsData = await getSideProjectsData();
+
   return (
     <section className="py-4">
       <SectionHeading>
@@ -18,7 +20,7 @@ export function ProjectsSection() {
           </h3>
           <div className="grid grid-flow-row gap-6 py-6 sm:grid-cols-2 lg:grid-cols-3">
             {sideProjectsData.map((item: SideProjectItemType) => (
-              <SideProjectItem key={Number(item.id)} data={item} />
+              <SideProjectItem key={item.id} data={item} />
             ))}
           </div>
         </div>

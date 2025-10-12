@@ -1,4 +1,4 @@
-import { CodeExampleItemType } from "@/types";
+import { CodeExampleItemType } from "@/types/code-example";
 
 import {
   Card,

@@ -1,11 +1,13 @@
-import { HistoryItemType } from "@/types";
-import { workHistoryData } from "@/data";
+import { HistoryItemType } from "@/types/history-item";
+import { getWorkHistoryData } from "@/data/work-history.data";
 
 import { Container } from "@/components/container";
 
 import { HistoryItem } from "./history-item";
 
-export function HistoryItemsSection() {
+export async function HistoryItemsSection() {
+  const workHistoryData = await getWorkHistoryData();
+
   return (
     <section>
       <Container>

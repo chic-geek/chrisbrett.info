@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/utils/classnames";
 import { forwardRef } from "react";
 import { IconType } from "react-icons";
 import Image from "next/image";

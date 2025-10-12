@@ -1,5 +1,5 @@
-import { HistoryItemType } from "@/types";
-import { formatDateRange } from "@/utils";
+import { HistoryItemType } from "@/types/history-item";
+import { formatDateRange } from "@/utils/date-formatting";
 import { MdOutlineEditCalendar as CalendarIcon } from "react-icons/md";
 
 import { Heading } from "@/components/ui/heading";

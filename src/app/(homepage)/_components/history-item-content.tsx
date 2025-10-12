@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/classnames";
 
 import { Heading } from "@/components/ui/heading";
 import { TextElement } from "@/components/ui/text-element";
