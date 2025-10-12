@@ -6,8 +6,9 @@ import { HeroSection } from "./_components/hero-section";
 import { HistoryItemsSection } from "./_components/history-items-section";
 import { CodeExamplesSection } from "./_components/code-examples-section";
 import { ArticleItems } from "./_components/article-items";
+import { ProjectsSection } from "./_components/projects-section";
 
-export default async function Homepage() {
+export default function Homepage() {
   return (
     <>
       <HeroSection />
@@ -41,6 +42,7 @@ export default async function Homepage() {
         </TextElement>
       </Container>
       <CodeExamplesSection />
+      <ProjectsSection />
     </>
   );
 }

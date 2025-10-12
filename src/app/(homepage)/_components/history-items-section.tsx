@@ -11,7 +11,7 @@ export function HistoryItemsSection() {
       <Container>
         <div className="flex flex-col gap-y-6">
           <ul>
-            {workHistoryData.map((item: HistoryItemType) => (
+            {[...workHistoryData].reverse().map((item: HistoryItemType) => (
               <HistoryItem key={item.id} data={item} />
             ))}
           </ul>

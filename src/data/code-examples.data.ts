@@ -15,7 +15,7 @@ import {
 
 export const codeExamplesData = [
   {
-    id: "1",
+    id: crypto.randomUUID(),
     title: "Venue search",
     icon: StoreIcon,
     description:
@@ -31,7 +31,7 @@ export const codeExamplesData = [
     },
   },
   {
-    id: "2",
+    id: crypto.randomUUID(),
     title: "Persistent theming",
     icon: PaletteIcon,
     description:
@@ -47,7 +47,7 @@ export const codeExamplesData = [
     },
   },
   {
-    id: "3",
+    id: crypto.randomUUID(),
     title: "Card transactions",
     icon: CircleDollarSignIcon,
     description:

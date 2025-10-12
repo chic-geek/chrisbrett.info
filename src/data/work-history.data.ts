@@ -5,15 +5,62 @@ import {
   SiGraphql as GraphQLIcon,
   SiRubyonrails as RailsIcon,
   SiTestinglibrary as TestingLibraryIcon,
+  SiMui as MUIIcon,
+  SiShadcnui as ShadcnUIIcon,
 } from "react-icons/si";
 
 import { LuLayers as LayersIcon } from "react-icons/lu";
+import { FaGolang as GolangIcon } from "react-icons/fa6";
 
 export const workHistoryData = [
   {
-    id: "1",
+    id: crypto.randomUUID(),
     company: {
-      name: "Qatalog",
+      name: "Citizens Advice",
+      url: "https://www.citizensadvice.org.uk/",
+    },
+    position: "Frontend Developer",
+    startDate: "2017-04-01",
+    endDate: "2021-10-31",
+    lede: "A network of independent charities offering free confidential advice and information.",
+    contributions: [
+      "Design and development of the CA design system using a collection of functional CSS classes and components for improved DX, consistency and improved performance.",
+      "Leading new feature development and contributing to existing features of a bespoke case management system using Ruby, Rails and React.",
+      "Initiated the development of a React component library, aligning it with our newly established design system to accelerate feature delivery processes.",
+      "Mentor junior team members, giving guidance on solving technical problems and planning features, ultimately giving them freedom to take more of a leadership role in other projects.",
+      "Discovery and development for a new CMS to scale content and it's distribution.",
+    ],
+    tags: [
+      { icon: ReactIcon, label: "React" },
+      { icon: GraphQLIcon, label: "GraphQL" },
+      { icon: RailsIcon, label: "Rails" },
+      { icon: TestingLibraryIcon, label: "Testing library" },
+      { icon: LayersIcon, label: "Design systems" },
+    ],
+  },
+  {
+    id: crypto.randomUUID(),
+    company: {
+      name: "Monolith.xyz (aka Token.com)",
+      url: "https://monolith.xyz/",
+    },
+    position: "Frontend Developer",
+    startDate: "2021-11-01",
+    endDate: "2022-01-31",
+    lede: "Secure platform for investing in curated cryptocurrency, emphasising community engagement and compliance.",
+    contributions: [
+      "Developed new UI functionalities for the Token crypto investment app utilising React Native and TypeScript.",
+      "Enhanced the KYC procedure by refining views and collaborating with the design team for a refreshed appearance and user experience.",
+    ],
+    tags: [
+      { icon: ReactIcon, label: "React Native" },
+      { icon: TSIcon, label: "Typescript" },
+    ],
+  },
+  {
+    id: crypto.randomUUID(),
+    company: {
+      name: "Qatalog (acquired by ClickUp)",
       url: "https://qatalog.com/",
     },
     position: "Frontend Developer",
@@ -36,47 +83,26 @@ export const workHistoryData = [
     ],
   },
   {
-    id: "2",
+    id: crypto.randomUUID(),
     company: {
-      name: "Monolith.xyz",
-      url: "https://monolith.xyz/",
+      name: "Nala Payments",
+      url: "https://www.nala.com/",
     },
-    position: "Frontend Developer",
-    startDate: "2021-11-01",
-    endDate: "2022-01-31",
-    lede: "Secure platform for investing in curated cryptocurrency, emphasising community engagement and compliance.",
+    position: "Senior Frontend Developer",
+    startDate: "2024-05-20",
+    lede: "Enabling fast, low-cost international money transfers to Africa and Asia.",
     contributions: [
-      "Developed new UI functionalities for the Token crypto investment app utilising React Native and TypeScript.",
-      "Enhanced the KYC procedure by refining views and collaborating with the design team for a refreshed appearance and user experience.",
-    ],
-    tags: [
-      { icon: ReactIcon, label: "React Native" },
-      { icon: TSIcon, label: "Typescript" },
-    ],
-  },
-  {
-    id: "3",
-    company: {
-      name: "Citizens Advice",
-      url: "https://www.citizensadvice.org.uk/",
-    },
-    position: "Frontend Developer",
-    startDate: "2017-04-01",
-    endDate: "2021-10-31",
-    lede: "A network of independent charities offering free confidential advice and information.",
-    contributions: [
-      "Design and development of the CA design system using a collection of functional CSS classes and components for improved DX, consistency and improved performance.",
-      "Leading new feature development and contributing to existing features of a bespoke case management system using Ruby, Rails and React.",
-      "Initiated the development of a React component library, aligning it with our newly established design system to accelerate feature delivery processes.",
-      "Mentor junior team members, giving guidance on solving technical problems and planning features, ultimately giving them freedom to take more of a leadership role in other projects.",
-      "Discovery and development for a new CMS to scale content and it's distribution.",
+      "Enhanced the overall user experience of the admin tool used by operations teams for their daily duties, improving workflow efficiency and usability.",
+      "Designed and implemented improvements to the task management system, aiming to reduce task cycle times and enhancing operational efficiency for the operations teams.",
+      "Transformed the fincrime tool from a small side project into a production-ready, intentionally designed solution for the fincrime operations team, including comprehensive testing implementation using Playwright.",
+      "Contributed to backend development by adding minor GoLang endpoints to serve data requirements for frontend features, expanding technical capabilities beyond frontend development.",
     ],
     tags: [
       { icon: ReactIcon, label: "React" },
-      { icon: GraphQLIcon, label: "GraphQL" },
-      { icon: RailsIcon, label: "Rails" },
-      { icon: TestingLibraryIcon, label: "Testing library" },
-      { icon: LayersIcon, label: "Design systems" },
+      { icon: TSIcon, label: "Typescript" },
+      { icon: GolangIcon, label: "Golang" },
+      { icon: MUIIcon, label: "MUI" },
+      { icon: ShadcnUIIcon, label: "Shadcn UI" },
     ],
   },
 ];

@@ -8,7 +8,7 @@ export type HistoryItemType = {
   };
   position: string;
   startDate: string;
-  endDate: string;
+  endDate?: string;
   lede: string;
   contributions: string[];
   tags?: TagItemType[];
