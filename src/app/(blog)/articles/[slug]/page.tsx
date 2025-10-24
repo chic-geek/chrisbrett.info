@@ -1,8 +1,6 @@
+import React from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
-import langJS from "highlight.js/lib/languages/javascript";
-import langTS from "highlight.js/lib/languages/typescript";
-import langCSS from "highlight.js/lib/languages/css";
 
 import "@/assets/highlightjs-github-dark.css";
 import { getAllArticleSlugs, getArticleBySlug } from "@/utils/article-fetchers";
@@ -98,15 +96,6 @@ const mdxCustomComponents = {
 const mdxOptions = {
   mdxOptions: {
     remarkPlugins: [],
-    rehypePlugins: [
-      rehypeHighlight as any,
-      {
-        languages: {
-          javascript: langJS,
-          typescript: langTS,
-          css: langCSS,
-        },
-      },
-    ],
+    rehypePlugins: [rehypeHighlight],
   },
 };

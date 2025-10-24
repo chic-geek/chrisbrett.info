@@ -73,4 +73,11 @@
     @apply max-h-full;
     @apply overflow-visible;
   }
+
+  /* Fix for extra space on first line of code blocks */
+  .prose pre > code,
+  .prose pre > code span {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
