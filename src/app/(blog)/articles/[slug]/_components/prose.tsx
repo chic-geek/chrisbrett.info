@@ -20,7 +20,11 @@ const BASE_PROSE_STYLES = [
   "prose-p:font-normal",
   "prose-p:leading-[1.75]",
   "prose-p:text-gray-100",
+  "prose-p:max-w-[65ch]",
+  "prose-p:text-pretty",
   "prose-hr:border-gray-600/30",
+  "prose-heading:max-w-[65ch]",
+  "prose-heading:text-pretty",
 ];
 
 interface ProseProps {
@@ -28,5 +32,7 @@ interface ProseProps {
 }
 
 export function Prose({ children }: ProseProps) {
-  return <div className={cn("py-14", BASE_PROSE_STYLES)}>{children}</div>;
+  return (
+    <div className={cn("max-w-none py-14", BASE_PROSE_STYLES)}>{children}</div>
+  );
 }
