@@ -19,12 +19,12 @@ const BASE_PROSE_STYLES = [
   "prose-p:text-base",
   "prose-p:font-normal",
   "prose-p:leading-[1.75]",
-  "prose-p:text-gray-100",
+  "prose-p:text-gray-300",
   "prose-p:max-w-[65ch]",
   "prose-p:text-pretty",
   "prose-hr:border-gray-600/30",
-  "prose-heading:max-w-[65ch]",
-  "prose-heading:text-pretty",
+  "prose-headings:max-w-[65ch]",
+  "prose-headings:text-pretty",
 ];
 
 interface ProseProps {
