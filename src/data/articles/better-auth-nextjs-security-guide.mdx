@@ -1,0 +1,1003 @@
+---
+title: "Better Auth Implementation Guide for Next.js"
+description: "A comprehensive guide to implementing Better Auth in Next.js with a focus on security best practices, covering everything from basic setup to advanced features like account deletion and testing strategies."
+category: "Technical note"
+author: "Chris Brett"
+published: "2025-10-22"
+---
+
+## Introduction
+
+After working with various authentication solutions in Next.js projects, I found myself constantly dealing with security vulnerabilities, complex configurations, and maintenance headaches. When I discovered Better Auth, I was initially skeptical—another auth library claiming to be "better" than the rest. However, after implementing it in several projects, I can confidently say it lives up to its name.
+
+This guide shares my experience implementing Better Auth in Next.js applications, with a particular focus on security best practices that I've learned through trial and error. Whether you're building a simple blog or a complex SaaS application, the principles and patterns I'll share here will help you create a robust, secure authentication system.
+
+## What is Better Auth?
+
+Better Auth is a modern authentication library designed specifically for Next.js applications. Unlike traditional auth solutions that often require complex server configurations or external services, Better Auth provides a clean, type-safe API that integrates seamlessly with Next.js App Router and Server Components.
+
+### Key Features
+
+- **Type-Safe**: Built with TypeScript from the ground up
+- **Next.js Optimized**: Designed specifically for Next.js App Router
+- **Security-First**: Implements modern security best practices by default
+- **Flexible**: Supports multiple authentication strategies
+- **Developer-Friendly**: Excellent developer experience with clear APIs
+
+## Prerequisites
+
+Before we dive into the implementation, make sure you have:
+
+- Node.js 18+ installed
+- A Next.js 14+ project with App Router
+- Basic understanding of React Server Components
+- Familiarity with TypeScript (recommended)
+
+## Project Setup
+
+### Installing Dependencies
+
+First, let's install the necessary packages:
+
+```bash
+npm install better-auth
+npm install @better-auth/nextjs
+```
+
+For additional features, you might also want:
+
+```bash
+npm install @better-auth/credentials
+npm install @better-auth/oauth
+```
+
+### Environment Variables
+
+Create a `.env.local` file in your project root with the following variables:
+
+```env
+BETTER_AUTH_SECRET=your-super-secret-key-here
+BETTER_AUTH_URL=http://localhost:3000
+```
+
+**Security Note**: Generate a strong secret key using a tool like `openssl rand -base64 32` or an online generator. Never commit this to version control.
+
+## Basic Configuration
+
+### Creating the Auth Configuration
+
+Create a new file at `lib/auth.ts`:
+
+```typescript
+import { betterAuth } from "better-auth";
+import { nextjs } from "@better-auth/nextjs";
+
+export const auth = betterAuth({
+  database: {
+    // We'll configure this in the next step
+  },
+  emailAndPassword: {
+    enabled: true,
+    requireEmailVerification: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    },
+  },
+  plugins: [nextjs()],
+  secret: process.env.BETTER_AUTH_SECRET!,
+  baseURL: process.env.BETTER_AUTH_URL!,
+});
+```
+
+### Database Setup
+
+Better Auth supports multiple database adapters. For this guide, I'll show you how to set up with Prisma (my preferred ORM):
+
+```typescript
+// lib/auth.ts
+import { prismaAdapter } from "@better-auth/prisma";
+
+export const auth = betterAuth({
+  database: prismaAdapter({
+    client: prisma, // Your Prisma client instance
+  }),
+  // ... rest of configuration
+});
+```
+
+### Prisma Schema
+
+Add the following to your `schema.prisma`:
+
+```prisma
+model Account {
+  id                String    @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?   @db.Text
+  access_token      String?   @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?   @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+```
+
+## API Routes Setup
+
+### Creating the Auth API Route
+
+Create `app/api/auth/[...all]/route.ts`:
+
+```typescript
+import { auth } from "@/lib/auth";
+
+export const { GET, POST } = auth.handler;
+```
+
+This single file handles all authentication endpoints automatically.
+
+## Client-Side Integration
+
+### Creating Auth Context
+
+Create `lib/auth-context.tsx`:
+
+```typescript
+"use client"
+
+import { createContext, useContext, useEffect, useState } from "react"
+import { authClient } from "@/lib/auth-client"
+
+interface AuthContextType {
+  user: any | null
+  loading: boolean
+  signIn: (email: string, password: string) => Promise<void>
+  signUp: (email: string, password: string, name: string) => Promise<void>
+  signOut: () => Promise<void>
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<any | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const initAuth = async () => {
+      try {
+        const session = await authClient.getSession()
+        setUser(session?.user || null)
+      } catch (error) {
+        console.error("Auth initialization error:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    initAuth()
+  }, [])
+
+  const signIn = async (email: string, password: string) => {
+    try {
+      const result = await authClient.signIn.email({
+        email,
+        password,
+      })
+
+      if (result.error) {
+        throw new Error(result.error.message)
+      }
+
+      setUser(result.data.user)
+    } catch (error) {
+      console.error("Sign in error:", error)
+      throw error
+    }
+  }
+
+  const signUp = async (email: string, password: string, name: string) => {
+    try {
+      const result = await authClient.signUp.email({
+        email,
+        password,
+        name,
+      })
+
+      if (result.error) {
+        throw new Error(result.error.message)
+      }
+
+      setUser(result.data.user)
+    } catch (error) {
+      console.error("Sign up error:", error)
+      throw error
+    }
+  }
+
+  const signOut = async () => {
+    try {
+      await authClient.signOut()
+      setUser(null)
+    } catch (error) {
+      console.error("Sign out error:", error)
+      throw error
+    }
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext)
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider")
+  }
+  return context
+}
+```
+
+### Creating Auth Client
+
+Create `lib/auth-client.ts`:
+
+```typescript
+import { createAuthClient } from "better-auth/react";
+
+export const authClient = createAuthClient({
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
+});
+```
+
+## Security Best Practices
+
+### Password Security
+
+Better Auth handles password security automatically, but here are some additional measures I recommend:
+
+```typescript
+// lib/auth.ts
+export const auth = betterAuth({
+  // ... other config
+  emailAndPassword: {
+    enabled: true,
+    requireEmailVerification: true,
+    minPasswordLength: 12,
+    maxPasswordLength: 128,
+    passwordRegex:
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+  },
+});
+```
+
+### Rate Limiting
+
+Implement rate limiting for authentication endpoints:
+
+```typescript
+// middleware.ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+const rateLimitMap = new Map();
+
+export function middleware(request: NextRequest) {
+  const ip = request.ip ?? "127.0.0.1";
+  const limit = 5;
+  const windowMs = 15 * 60 * 1000; // 15 minutes
+
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, { count: 1, resetTime: Date.now() + windowMs });
+  } else {
+    const userLimit = rateLimitMap.get(ip);
+
+    if (Date.now() > userLimit.resetTime) {
+      userLimit.count = 1;
+      userLimit.resetTime = Date.now() + windowMs;
+    } else if (userLimit.count >= limit) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    } else {
+      userLimit.count++;
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: "/api/auth/:path*",
+};
+```
+
+### CSRF Protection
+
+Better Auth includes CSRF protection by default, but ensure your configuration is secure:
+
+```typescript
+// lib/auth.ts
+export const auth = betterAuth({
+  // ... other config
+  trustedOrigins: [process.env.BETTER_AUTH_URL!],
+  csrfProtection: {
+    enabled: true,
+    sameSite: "strict",
+  },
+});
+```
+
+## Advanced Features
+
+### Account Deletion
+
+Implementing secure account deletion is crucial for user privacy and compliance:
+
+```typescript
+// app/api/auth/delete-account/route.ts
+import { auth } from "@/lib/auth";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(request: NextRequest) {
+  try {
+    const session = await auth.api.getSession({
+      headers: request.headers,
+    });
+
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Delete user data
+    await prisma.user.delete({
+      where: { id: session.user.id },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Account deletion error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete account" },
+      { status: 500 },
+    );
+  }
+}
+```
+
+### Email Verification
+
+Set up email verification for new accounts:
+
+```typescript
+// lib/auth.ts
+import { sendVerificationEmail } from "@/lib/email";
+
+export const auth = betterAuth({
+  // ... other config
+  emailAndPassword: {
+    enabled: true,
+    requireEmailVerification: true,
+    sendVerificationEmail: async ({ user, token }) => {
+      await sendVerificationEmail({
+        email: user.email,
+        token,
+      });
+    },
+  },
+});
+```
+
+### Social Authentication
+
+Configure social providers for better user experience:
+
+```typescript
+// lib/auth.ts
+export const auth = betterAuth({
+  // ... other config
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    },
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    },
+  },
+});
+```
+
+## Testing Your Implementation
+
+### Unit Tests
+
+Create comprehensive tests for your authentication logic:
+
+```typescript
+// __tests__/auth.test.ts
+import { describe, it, expect, beforeEach } from "@jest/globals";
+import { auth } from "@/lib/auth";
+
+describe("Authentication", () => {
+  beforeEach(async () => {
+    // Clean up test data
+    await prisma.user.deleteMany();
+  });
+
+  it("should create a new user", async () => {
+    const result = await auth.api.signUpEmail({
+      body: {
+        email: "test@example.com",
+        password: "SecurePassword123!",
+        name: "Test User",
+      },
+    });
+
+    expect(result.user).toBeDefined();
+    expect(result.user.email).toBe("test@example.com");
+  });
+
+  it("should reject weak passwords", async () => {
+    const result = await auth.api.signUpEmail({
+      body: {
+        email: "test@example.com",
+        password: "123",
+        name: "Test User",
+      },
+    });
+
+    expect(result.error).toBeDefined();
+  });
+});
+```
+
+### Integration Tests
+
+Test the complete authentication flow:
+
+```typescript
+// __tests__/auth-integration.test.ts
+import { createMocks } from "node-mocks-http";
+import handler from "@/app/api/auth/[...all]/route";
+
+describe("Auth API", () => {
+  it("should handle sign in", async () => {
+    const { req, res } = createMocks({
+      method: "POST",
+      url: "/api/auth/sign-in/email",
+      body: {
+        email: "test@example.com",
+        password: "SecurePassword123!",
+      },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+  });
+});
+```
+
+## Common Issues and Solutions
+
+### Issue: "Invalid CSRF token"
+
+**Solution**: Ensure your frontend is sending the correct CSRF token:
+
+```typescript
+// lib/auth-client.ts
+export const authClient = createAuthClient({
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
+  fetchOptions: {
+    credentials: "include",
+  },
+});
+```
+
+### Issue: "Database connection failed"
+
+**Solution**: Verify your database configuration and ensure the Prisma client is properly initialized:
+
+```typescript
+// lib/prisma.ts
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+```
+
+### Issue: "Email verification not working"
+
+**Solution**: Check your email service configuration and ensure the verification URL is correct:
+
+```typescript
+// lib/email.ts
+export async function sendVerificationEmail({
+  email,
+  token,
+}: {
+  email: string;
+  token: string;
+}) {
+  const verificationUrl = `${process.env.BETTER_AUTH_URL}/verify-email?token=${token}`;
+
+  // Send email using your preferred service (SendGrid, Resend, etc.)
+  await emailService.send({
+    to: email,
+    subject: "Verify your email",
+    html: `<a href="${verificationUrl}">Click here to verify your email</a>`,
+  });
+}
+```
+
+## Performance Optimization
+
+### Database Indexing
+
+Ensure your database has proper indexes for authentication queries:
+
+```sql
+-- Add these indexes to your database
+CREATE INDEX idx_user_email ON "User"("email");
+CREATE INDEX idx_session_token ON "Session"("sessionToken");
+CREATE INDEX idx_account_provider ON "Account"("provider", "providerAccountId");
+```
+
+### Caching
+
+Implement caching for frequently accessed user data:
+
+```typescript
+// lib/auth.ts
+import { Redis } from "ioredis";
+
+const redis = new Redis(process.env.REDIS_URL!);
+
+export const auth = betterAuth({
+  // ... other config
+  database: {
+    ...prismaAdapter({ client: prisma }),
+    cache: {
+      get: async (key) => {
+        const value = await redis.get(key);
+        return value ? JSON.parse(value) : null;
+      },
+      set: async (key, value, ttl) => {
+        await redis.setex(key, ttl, JSON.stringify(value));
+      },
+      del: async (key) => {
+        await redis.del(key);
+      },
+    },
+  },
+});
+```
+
+## Monitoring and Logging
+
+### Authentication Logs
+
+Implement comprehensive logging for security monitoring:
+
+```typescript
+// lib/auth.ts
+export const auth = betterAuth({
+  // ... other config
+  logger: {
+    level: "info",
+    disabled: false,
+  },
+  events: {
+    signIn: {
+      async after({ user, session }) {
+        console.log(
+          `User ${user.email} signed in at ${new Date().toISOString()}`,
+        );
+        // Log to your monitoring service
+      },
+    },
+    signUp: {
+      async after({ user }) {
+        console.log(
+          `New user ${user.email} registered at ${new Date().toISOString()}`,
+        );
+        // Send welcome email, etc.
+      },
+    },
+  },
+});
+```
+
+### Security Monitoring
+
+Set up alerts for suspicious activities:
+
+```typescript
+// lib/security-monitor.ts
+export class SecurityMonitor {
+  private static instance: SecurityMonitor;
+  private failedAttempts = new Map<string, number>();
+
+  static getInstance() {
+    if (!SecurityMonitor.instance) {
+      SecurityMonitor.instance = new SecurityMonitor();
+    }
+    return SecurityMonitor.instance;
+  }
+
+  recordFailedAttempt(ip: string) {
+    const attempts = this.failedAttempts.get(ip) || 0;
+    this.failedAttempts.set(ip, attempts + 1);
+
+    if (attempts >= 5) {
+      this.alertSuspiciousActivity(ip);
+    }
+  }
+
+  private alertSuspiciousActivity(ip: string) {
+    console.warn(`Suspicious activity detected from IP: ${ip}`);
+    // Send alert to your monitoring service
+  }
+}
+```
+
+## Deployment Considerations
+
+### Environment Configuration
+
+Ensure your production environment is properly configured:
+
+```env
+# .env.production
+BETTER_AUTH_SECRET=your-production-secret
+BETTER_AUTH_URL=https://yourdomain.com
+DATABASE_URL=your-production-database-url
+REDIS_URL=your-production-redis-url
+```
+
+### Security Headers
+
+Add security headers to your Next.js configuration:
+
+```typescript
+// next.config.js
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/api/auth/:path*",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+```
+
+## Conclusion
+
+Implementing Better Auth in Next.js has been a game-changer for my projects. The combination of security-first design, excellent developer experience, and seamless Next.js integration makes it my go-to choice for authentication.
+
+The key to success with Better Auth is understanding that security is not just about the library you choose—it's about how you implement it. The patterns and practices I've shared in this guide will help you build a robust, secure authentication system that can scale with your application.
+
+Remember to always test your implementation thoroughly, monitor for security issues, and keep your dependencies updated. Authentication is a critical part of your application, and getting it right from the start will save you countless hours of debugging and security fixes later.
+
+If you're just getting started with Better Auth, I recommend implementing the basic features first, then gradually adding the advanced security measures. Don't try to implement everything at once—take it step by step, and you'll have a solid foundation for your application's authentication needs.
+
+## Additional Resources
+
+- [Better Auth Documentation](https://www.better-auth.com/docs)
+- [Next.js Authentication Patterns](https://nextjs.org/docs/authentication)
+- [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
+- [Prisma Documentation](https://www.prisma.io/docs)
+
+## Testing Checklist
+
+Before deploying your authentication system, make sure you've tested:
+
+- [ ] User registration with valid data
+- [ ] User registration with invalid data (proper error handling)
+- [ ] Email verification flow
+- [ ] Password reset functionality
+- [ ] Social authentication (if implemented)
+- [ ] Session management (login/logout)
+- [ ] Account deletion
+- [ ] Rate limiting
+- [ ] CSRF protection
+- [ ] Password strength validation
+- [ ] Database connection handling
+- [ ] Error logging and monitoring
+- [ ] Performance under load
+- [ ] Security headers
+- [ ] Mobile responsiveness
+- [ ] Accessibility compliance
+
+## Common Issues and Solutions
+
+### Issue: "Invalid CSRF token"
+
+**Solution**: Ensure your frontend is sending the correct CSRF token:
+
+```typescript
+// lib/auth-client.ts
+export const authClient = createAuthClient({
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
+  fetchOptions: {
+    credentials: "include",
+  },
+});
+```
+
+### Issue: "Database connection failed"
+
+**Solution**: Verify your database configuration and ensure the Prisma client is properly initialized:
+
+```typescript
+// lib/prisma.ts
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+```
+
+### Issue: "Email verification not working"
+
+**Solution**: Check your email service configuration and ensure the verification URL is correct:
+
+```typescript
+// lib/email.ts
+export async function sendVerificationEmail({
+  email,
+  token,
+}: {
+  email: string;
+  token: string;
+}) {
+  const verificationUrl = `${process.env.BETTER_AUTH_URL}/verify-email?token=${token}`;
+
+  // Send email using your preferred service (SendGrid, Resend, etc.)
+  await emailService.send({
+    to: email,
+    subject: "Verify your email",
+    html: `<a href="${verificationUrl}">Click here to verify your email</a>`,
+  });
+}
+```
+
+## Performance Optimization
+
+### Database Indexing
+
+Ensure your database has proper indexes for authentication queries:
+
+```sql
+-- Add these indexes to your database
+CREATE INDEX idx_user_email ON "User"("email");
+CREATE INDEX idx_session_token ON "Session"("sessionToken");
+CREATE INDEX idx_account_provider ON "Account"("provider", "providerAccountId");
+```
+
+### Caching
+
+Implement caching for frequently accessed user data:
+
+```typescript
+// lib/auth.ts
+import { Redis } from "ioredis";
+
+const redis = new Redis(process.env.REDIS_URL!);
+
+export const auth = betterAuth({
+  // ... other config
+  database: {
+    ...prismaAdapter({ client: prisma }),
+    cache: {
+      get: async (key) => {
+        const value = await redis.get(key);
+        return value ? JSON.parse(value) : null;
+      },
+      set: async (key, value, ttl) => {
+        await redis.setex(key, ttl, JSON.stringify(value));
+      },
+      del: async (key) => {
+        await redis.del(key);
+      },
+    },
+  },
+});
+```
+
+## Monitoring and Logging
+
+### Authentication Logs
+
+Implement comprehensive logging for security monitoring:
+
+```typescript
+// lib/auth.ts
+export const auth = betterAuth({
+  // ... other config
+  logger: {
+    level: "info",
+    disabled: false,
+  },
+  events: {
+    signIn: {
+      async after({ user, session }) {
+        console.log(
+          `User ${user.email} signed in at ${new Date().toISOString()}`,
+        );
+        // Log to your monitoring service
+      },
+    },
+    signUp: {
+      async after({ user }) {
+        console.log(
+          `New user ${user.email} registered at ${new Date().toISOString()}`,
+        );
+        // Send welcome email, etc.
+      },
+    },
+  },
+});
+```
+
+### Security Monitoring
+
+Set up alerts for suspicious activities:
+
+```typescript
+// lib/security-monitor.ts
+export class SecurityMonitor {
+  private static instance: SecurityMonitor;
+  private failedAttempts = new Map<string, number>();
+
+  static getInstance() {
+    if (!SecurityMonitor.instance) {
+      SecurityMonitor.instance = new SecurityMonitor();
+    }
+    return SecurityMonitor.instance;
+  }
+
+  recordFailedAttempt(ip: string) {
+    const attempts = this.failedAttempts.get(ip) || 0;
+    this.failedAttempts.set(ip, attempts + 1);
+
+    if (attempts >= 5) {
+      this.alertSuspiciousActivity(ip);
+    }
+  }
+
+  private alertSuspiciousActivity(ip: string) {
+    console.warn(`Suspicious activity detected from IP: ${ip}`);
+    // Send alert to your monitoring service
+  }
+}
+```
+
+## Deployment Considerations
+
+### Environment Configuration
+
+Ensure your production environment is properly configured:
+
+```env
+# .env.production
+BETTER_AUTH_SECRET=your-production-secret
+BETTER_AUTH_URL=https://yourdomain.com
+DATABASE_URL=your-production-database-url
+REDIS_URL=your-production-redis-url
+```
+
+### Security Headers
+
+Add security headers to your Next.js configuration:
+
+```typescript
+// next.config.js
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/api/auth/:path*",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
+```
+
+## Conclusion
+
+Implementing Better Auth in Next.js has been a game-changer for my projects. The combination of security-first design, excellent developer experience, and seamless Next.js integration makes it my go-to choice for authentication.
+
+The key to success with Better Auth is understanding that security is not just about the library you choose—it's about how you implement it. The patterns and practices I've shared in this guide will help you build a robust, secure authentication system that can scale with your application.
+
+Remember to always test your implementation thoroughly, monitor for security issues, and keep your dependencies updated. Authentication is a critical part of your application, and getting it right from the start will save you countless hours of debugging and security fixes later.
+
+If you're just getting started with Better Auth, I recommend implementing the basic features first, then gradually adding the advanced security measures. Don't try to implement everything at once—take it step by step, and you'll have a solid foundation for your application's authentication needs.
+
+## Additional Resources
+
+- [Better Auth Documentation](https://www.better-auth.com/docs)
+- [Next.js Authentication Patterns](https://nextjs.org/docs/authentication)
+- [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
+- [Prisma Documentation](https://www.prisma.io/docs)
