@@ -18,13 +18,16 @@ export async function generateStaticParams() {
 }
 
 interface ArticlePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const { articleFrontmatter, articleContent } = await getArticleBySlug(params);
+  const { slug } = await params;
+  const { articleFrontmatter, articleContent } = await getArticleBySlug({
+    slug,
+  });
 
   const {
     title,
